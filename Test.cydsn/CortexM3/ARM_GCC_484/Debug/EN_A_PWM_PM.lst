@@ -1,0 +1,1073 @@
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccuTG893.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"EN_A_PWM_PM.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.EN_A_PWM_SaveConfig,"ax",%progbits
+  19              		.align	2
+  20              		.global	EN_A_PWM_SaveConfig
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	EN_A_PWM_SaveConfig, %function
+  24              	EN_A_PWM_SaveConfig:
+  25              	.LFB0:
+  26              		.file 1 ".\\Generated_Source\\PSoC5\\EN_A_PWM_PM.c"
+   1:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** * File Name: EN_A_PWM_PM.c
+   3:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** * Version 3.30
+   4:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *
+   5:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** * Description:
+   6:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *  This file provides the power management source code to API for the
+   7:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *  PWM.
+   8:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *
+   9:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** * Note:
+  10:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *
+  11:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** ********************************************************************************
+  12:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** * Copyright 2008-2014, Cypress Semiconductor Corporation.  All rights reserved.
+  13:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** * You may use this file only in accordance with the license, terms, conditions,
+  14:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  15:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** * the software package with which this file was provided.
+  16:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *******************************************************************************/
+  17:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** 
+  18:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** #include "EN_A_PWM.h"
+  19:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** 
+  20:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** static EN_A_PWM_backupStruct EN_A_PWM_backup;
+  21:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** 
+  22:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** 
+  23:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** /*******************************************************************************
+  24:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** * Function Name: EN_A_PWM_SaveConfig
+  25:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** ********************************************************************************
+  26:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *
+  27:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** * Summary:
+  28:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *  Saves the current user configuration of the component.
+  29:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *
+  30:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** * Parameters:
+  31:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *  None
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccuTG893.s 			page 2
+
+
+  32:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *
+  33:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** * Return:
+  34:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *  None
+  35:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *
+  36:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** * Global variables:
+  37:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *  EN_A_PWM_backup:  Variables of this global structure are modified to
+  38:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *  store the values of non retention configuration registers when Sleep() API is
+  39:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *  called.
+  40:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *
+  41:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *******************************************************************************/
+  42:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** void EN_A_PWM_SaveConfig(void) 
+  43:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** {
+  27              		.loc 1 43 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 10B5     		push	{r4, lr}
+  32              		.cfi_def_cfa_offset 8
+  33              		.cfi_offset 4, -8
+  34              		.cfi_offset 14, -4
+  44:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** 
+  45:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****     #if(!EN_A_PWM_UsingFixedFunction)
+  46:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****         #if(!EN_A_PWM_PWMModeIsCenterAligned)
+  47:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****             EN_A_PWM_backup.PWMPeriod = EN_A_PWM_ReadPeriod();
+  35              		.loc 1 47 0
+  36 0002 FFF7FEFF 		bl	EN_A_PWM_ReadPeriod
+  37              	.LVL0:
+  38 0006 044C     		ldr	r4, .L2
+  39 0008 A080     		strh	r0, [r4, #4]	@ movhi
+  48:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****         #endif /* (!EN_A_PWM_PWMModeIsCenterAligned) */
+  49:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****         EN_A_PWM_backup.PWMUdb = EN_A_PWM_ReadCounter();
+  40              		.loc 1 49 0
+  41 000a FFF7FEFF 		bl	EN_A_PWM_ReadCounter
+  42              	.LVL1:
+  43 000e 6080     		strh	r0, [r4, #2]	@ movhi
+  50:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****         #if (EN_A_PWM_UseStatus)
+  51:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****             EN_A_PWM_backup.InterruptMaskValue = EN_A_PWM_STATUS_MASK;
+  44              		.loc 1 51 0
+  45 0010 024B     		ldr	r3, .L2+4
+  46 0012 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  47 0014 A371     		strb	r3, [r4, #6]
+  48 0016 10BD     		pop	{r4, pc}
+  49              	.L3:
+  50              		.align	2
+  51              	.L2:
+  52 0018 00000000 		.word	.LANCHOR0
+  53 001c 8F640040 		.word	1073767567
+  54              		.cfi_endproc
+  55              	.LFE0:
+  56              		.size	EN_A_PWM_SaveConfig, .-EN_A_PWM_SaveConfig
+  57              		.section	.text.EN_A_PWM_RestoreConfig,"ax",%progbits
+  58              		.align	2
+  59              		.global	EN_A_PWM_RestoreConfig
+  60              		.thumb
+  61              		.thumb_func
+  62              		.type	EN_A_PWM_RestoreConfig, %function
+  63              	EN_A_PWM_RestoreConfig:
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccuTG893.s 			page 3
+
+
+  64              	.LFB1:
+  52:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****         #endif /* (EN_A_PWM_UseStatus) */
+  53:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** 
+  54:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****         #if(EN_A_PWM_DeadBandMode == EN_A_PWM__B_PWM__DBM_256_CLOCKS || \
+  55:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****             EN_A_PWM_DeadBandMode == EN_A_PWM__B_PWM__DBM_2_4_CLOCKS)
+  56:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****             EN_A_PWM_backup.PWMdeadBandValue = EN_A_PWM_ReadDeadTime();
+  57:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****         #endif /*  deadband count is either 2-4 clocks or 256 clocks */
+  58:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** 
+  59:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****         #if(EN_A_PWM_KillModeMinTime)
+  60:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****              EN_A_PWM_backup.PWMKillCounterPeriod = EN_A_PWM_ReadKillTime();
+  61:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****         #endif /* (EN_A_PWM_KillModeMinTime) */
+  62:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** 
+  63:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****         #if(EN_A_PWM_UseControl)
+  64:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****             EN_A_PWM_backup.PWMControlRegister = EN_A_PWM_ReadControlRegister();
+  65:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****         #endif /* (EN_A_PWM_UseControl) */
+  66:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****     #endif  /* (!EN_A_PWM_UsingFixedFunction) */
+  67:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** }
+  68:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** 
+  69:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** 
+  70:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** /*******************************************************************************
+  71:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** * Function Name: EN_A_PWM_RestoreConfig
+  72:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** ********************************************************************************
+  73:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *
+  74:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** * Summary:
+  75:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *  Restores the current user configuration of the component.
+  76:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *
+  77:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** * Parameters:
+  78:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *  None
+  79:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *
+  80:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** * Return:
+  81:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *  None
+  82:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *
+  83:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** * Global variables:
+  84:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *  EN_A_PWM_backup:  Variables of this global structure are used to
+  85:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *  restore the values of non retention registers on wakeup from sleep mode.
+  86:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *
+  87:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *******************************************************************************/
+  88:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** void EN_A_PWM_RestoreConfig(void) 
+  89:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** {
+  65              		.loc 1 89 0
+  66              		.cfi_startproc
+  67              		@ args = 0, pretend = 0, frame = 0
+  68              		@ frame_needed = 0, uses_anonymous_args = 0
+  69 0000 10B5     		push	{r4, lr}
+  70              		.cfi_def_cfa_offset 8
+  71              		.cfi_offset 4, -8
+  72              		.cfi_offset 14, -4
+  90:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****         #if(!EN_A_PWM_UsingFixedFunction)
+  91:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****             #if(!EN_A_PWM_PWMModeIsCenterAligned)
+  92:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****                 EN_A_PWM_WritePeriod(EN_A_PWM_backup.PWMPeriod);
+  73              		.loc 1 92 0
+  74 0002 054C     		ldr	r4, .L5
+  75 0004 A088     		ldrh	r0, [r4, #4]
+  76 0006 FFF7FEFF 		bl	EN_A_PWM_WritePeriod
+  77              	.LVL2:
+  93:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****             #endif /* (!EN_A_PWM_PWMModeIsCenterAligned) */
+  94:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** 
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccuTG893.s 			page 4
+
+
+  95:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****             EN_A_PWM_WriteCounter(EN_A_PWM_backup.PWMUdb);
+  78              		.loc 1 95 0
+  79 000a 6088     		ldrh	r0, [r4, #2]
+  80 000c FFF7FEFF 		bl	EN_A_PWM_WriteCounter
+  81              	.LVL3:
+  96:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** 
+  97:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****             #if (EN_A_PWM_UseStatus)
+  98:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****                 EN_A_PWM_STATUS_MASK = EN_A_PWM_backup.InterruptMaskValue;
+  82              		.loc 1 98 0
+  83 0010 A279     		ldrb	r2, [r4, #6]	@ zero_extendqisi2
+  84 0012 024B     		ldr	r3, .L5+4
+  85 0014 1A70     		strb	r2, [r3]
+  86 0016 10BD     		pop	{r4, pc}
+  87              	.L6:
+  88              		.align	2
+  89              	.L5:
+  90 0018 00000000 		.word	.LANCHOR0
+  91 001c 8F640040 		.word	1073767567
+  92              		.cfi_endproc
+  93              	.LFE1:
+  94              		.size	EN_A_PWM_RestoreConfig, .-EN_A_PWM_RestoreConfig
+  95              		.section	.text.EN_A_PWM_Sleep,"ax",%progbits
+  96              		.align	2
+  97              		.global	EN_A_PWM_Sleep
+  98              		.thumb
+  99              		.thumb_func
+ 100              		.type	EN_A_PWM_Sleep, %function
+ 101              	EN_A_PWM_Sleep:
+ 102              	.LFB2:
+  99:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****             #endif /* (EN_A_PWM_UseStatus) */
+ 100:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** 
+ 101:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****             #if(EN_A_PWM_DeadBandMode == EN_A_PWM__B_PWM__DBM_256_CLOCKS || \
+ 102:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****                 EN_A_PWM_DeadBandMode == EN_A_PWM__B_PWM__DBM_2_4_CLOCKS)
+ 103:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****                 EN_A_PWM_WriteDeadTime(EN_A_PWM_backup.PWMdeadBandValue);
+ 104:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****             #endif /* deadband count is either 2-4 clocks or 256 clocks */
+ 105:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** 
+ 106:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****             #if(EN_A_PWM_KillModeMinTime)
+ 107:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****                 EN_A_PWM_WriteKillTime(EN_A_PWM_backup.PWMKillCounterPeriod);
+ 108:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****             #endif /* (EN_A_PWM_KillModeMinTime) */
+ 109:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** 
+ 110:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****             #if(EN_A_PWM_UseControl)
+ 111:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****                 EN_A_PWM_WriteControlRegister(EN_A_PWM_backup.PWMControlRegister);
+ 112:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****             #endif /* (EN_A_PWM_UseControl) */
+ 113:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****         #endif  /* (!EN_A_PWM_UsingFixedFunction) */
+ 114:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****     }
+ 115:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** 
+ 116:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** 
+ 117:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** /*******************************************************************************
+ 118:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** * Function Name: EN_A_PWM_Sleep
+ 119:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** ********************************************************************************
+ 120:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *
+ 121:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** * Summary:
+ 122:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *  Disables block's operation and saves the user configuration. Should be called
+ 123:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *  just prior to entering sleep.
+ 124:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *
+ 125:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** * Parameters:
+ 126:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *  None
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccuTG893.s 			page 5
+
+
+ 127:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *
+ 128:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** * Return:
+ 129:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *  None
+ 130:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *
+ 131:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** * Global variables:
+ 132:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *  EN_A_PWM_backup.PWMEnableState:  Is modified depending on the enable
+ 133:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *  state of the block before entering sleep mode.
+ 134:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *
+ 135:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *******************************************************************************/
+ 136:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** void EN_A_PWM_Sleep(void) 
+ 137:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** {
+ 103              		.loc 1 137 0
+ 104              		.cfi_startproc
+ 105              		@ args = 0, pretend = 0, frame = 0
+ 106              		@ frame_needed = 0, uses_anonymous_args = 0
+ 107 0000 08B5     		push	{r3, lr}
+ 108              		.cfi_def_cfa_offset 8
+ 109              		.cfi_offset 3, -8
+ 110              		.cfi_offset 14, -4
+ 138:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****     #if(EN_A_PWM_UseControl)
+ 139:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****         if(EN_A_PWM_CTRL_ENABLE == (EN_A_PWM_CONTROL & EN_A_PWM_CTRL_ENABLE))
+ 140:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****         {
+ 141:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****             /*Component is enabled */
+ 142:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****             EN_A_PWM_backup.PWMEnableState = 1u;
+ 143:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****         }
+ 144:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****         else
+ 145:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****         {
+ 146:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****             /* Component is disabled */
+ 147:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****             EN_A_PWM_backup.PWMEnableState = 0u;
+ 148:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****         }
+ 149:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****     #endif /* (EN_A_PWM_UseControl) */
+ 150:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** 
+ 151:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****     /* Stop component */
+ 152:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****     EN_A_PWM_Stop();
+ 111              		.loc 1 152 0
+ 112 0002 FFF7FEFF 		bl	EN_A_PWM_Stop
+ 113              	.LVL4:
+ 153:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** 
+ 154:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****     /* Save registers configuration */
+ 155:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****     EN_A_PWM_SaveConfig();
+ 114              		.loc 1 155 0
+ 115 0006 FFF7FEFF 		bl	EN_A_PWM_SaveConfig
+ 116              	.LVL5:
+ 117 000a 08BD     		pop	{r3, pc}
+ 118              		.cfi_endproc
+ 119              	.LFE2:
+ 120              		.size	EN_A_PWM_Sleep, .-EN_A_PWM_Sleep
+ 121              		.section	.text.EN_A_PWM_Wakeup,"ax",%progbits
+ 122              		.align	2
+ 123              		.global	EN_A_PWM_Wakeup
+ 124              		.thumb
+ 125              		.thumb_func
+ 126              		.type	EN_A_PWM_Wakeup, %function
+ 127              	EN_A_PWM_Wakeup:
+ 128              	.LFB3:
+ 156:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** }
+ 157:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** 
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccuTG893.s 			page 6
+
+
+ 158:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** 
+ 159:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** /*******************************************************************************
+ 160:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** * Function Name: EN_A_PWM_Wakeup
+ 161:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** ********************************************************************************
+ 162:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *
+ 163:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** * Summary:
+ 164:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *  Restores and enables the user configuration. Should be called just after
+ 165:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *  awaking from sleep.
+ 166:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *
+ 167:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** * Parameters:
+ 168:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *  None
+ 169:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *
+ 170:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** * Return:
+ 171:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *  None
+ 172:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *
+ 173:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** * Global variables:
+ 174:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *  EN_A_PWM_backup.pwmEnable:  Is used to restore the enable state of
+ 175:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *  block on wakeup from sleep mode.
+ 176:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *
+ 177:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** *******************************************************************************/
+ 178:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** void EN_A_PWM_Wakeup(void) 
+ 179:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** {
+ 129              		.loc 1 179 0
+ 130              		.cfi_startproc
+ 131              		@ args = 0, pretend = 0, frame = 0
+ 132              		@ frame_needed = 0, uses_anonymous_args = 0
+ 133 0000 08B5     		push	{r3, lr}
+ 134              		.cfi_def_cfa_offset 8
+ 135              		.cfi_offset 3, -8
+ 136              		.cfi_offset 14, -4
+ 180:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****      /* Restore registers values */
+ 181:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****     EN_A_PWM_RestoreConfig();
+ 137              		.loc 1 181 0
+ 138 0002 FFF7FEFF 		bl	EN_A_PWM_RestoreConfig
+ 139              	.LVL6:
+ 182:.\Generated_Source\PSoC5/EN_A_PWM_PM.c **** 
+ 183:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****     if(EN_A_PWM_backup.PWMEnableState != 0u)
+ 140              		.loc 1 183 0
+ 141 0006 034B     		ldr	r3, .L10
+ 142 0008 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 143 000a 0BB1     		cbz	r3, .L8
+ 184:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****     {
+ 185:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****         /* Enable component's operation */
+ 186:.\Generated_Source\PSoC5/EN_A_PWM_PM.c ****         EN_A_PWM_Enable();
+ 144              		.loc 1 186 0
+ 145 000c FFF7FEFF 		bl	EN_A_PWM_Enable
+ 146              	.LVL7:
+ 147              	.L8:
+ 148 0010 08BD     		pop	{r3, pc}
+ 149              	.L11:
+ 150 0012 00BF     		.align	2
+ 151              	.L10:
+ 152 0014 00000000 		.word	.LANCHOR0
+ 153              		.cfi_endproc
+ 154              	.LFE3:
+ 155              		.size	EN_A_PWM_Wakeup, .-EN_A_PWM_Wakeup
+ 156              		.bss
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccuTG893.s 			page 7
+
+
+ 157              		.align	2
+ 158              		.set	.LANCHOR0,. + 0
+ 159              		.type	EN_A_PWM_backup, %object
+ 160              		.size	EN_A_PWM_backup, 8
+ 161              	EN_A_PWM_backup:
+ 162 0000 00000000 		.space	8
+ 162      00000000 
+ 163              		.text
+ 164              	.Letext0:
+ 165              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 166              		.file 3 ".\\Generated_Source\\PSoC5\\EN_A_PWM.h"
+ 167              		.section	.debug_info,"",%progbits
+ 168              	.Ldebug_info0:
+ 169 0000 E6010000 		.4byte	0x1e6
+ 170 0004 0400     		.2byte	0x4
+ 171 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 172 000a 04       		.byte	0x4
+ 173 000b 01       		.uleb128 0x1
+ 174 000c 71010000 		.4byte	.LASF31
+ 175 0010 01       		.byte	0x1
+ 176 0011 E7000000 		.4byte	.LASF32
+ 177 0015 35010000 		.4byte	.LASF33
+ 178 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 179 001d 00000000 		.4byte	0
+ 180 0021 00000000 		.4byte	.Ldebug_line0
+ 181 0025 02       		.uleb128 0x2
+ 182 0026 01       		.byte	0x1
+ 183 0027 06       		.byte	0x6
+ 184 0028 6B020000 		.4byte	.LASF0
+ 185 002c 02       		.uleb128 0x2
+ 186 002d 01       		.byte	0x1
+ 187 002e 08       		.byte	0x8
+ 188 002f 53000000 		.4byte	.LASF1
+ 189 0033 02       		.uleb128 0x2
+ 190 0034 02       		.byte	0x2
+ 191 0035 05       		.byte	0x5
+ 192 0036 17020000 		.4byte	.LASF2
+ 193 003a 02       		.uleb128 0x2
+ 194 003b 02       		.byte	0x2
+ 195 003c 07       		.byte	0x7
+ 196 003d 25000000 		.4byte	.LASF3
+ 197 0041 02       		.uleb128 0x2
+ 198 0042 04       		.byte	0x4
+ 199 0043 05       		.byte	0x5
+ 200 0044 4E020000 		.4byte	.LASF4
+ 201 0048 02       		.uleb128 0x2
+ 202 0049 04       		.byte	0x4
+ 203 004a 07       		.byte	0x7
+ 204 004b 80000000 		.4byte	.LASF5
+ 205 004f 02       		.uleb128 0x2
+ 206 0050 08       		.byte	0x8
+ 207 0051 05       		.byte	0x5
+ 208 0052 F6010000 		.4byte	.LASF6
+ 209 0056 02       		.uleb128 0x2
+ 210 0057 08       		.byte	0x8
+ 211 0058 07       		.byte	0x7
+ 212 0059 1E010000 		.4byte	.LASF7
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccuTG893.s 			page 8
+
+
+ 213 005d 03       		.uleb128 0x3
+ 214 005e 04       		.byte	0x4
+ 215 005f 05       		.byte	0x5
+ 216 0060 696E7400 		.ascii	"int\000"
+ 217 0064 02       		.uleb128 0x2
+ 218 0065 04       		.byte	0x4
+ 219 0066 07       		.byte	0x7
+ 220 0067 DA000000 		.4byte	.LASF8
+ 221 006b 04       		.uleb128 0x4
+ 222 006c 92000000 		.4byte	.LASF9
+ 223 0070 02       		.byte	0x2
+ 224 0071 B3       		.byte	0xb3
+ 225 0072 2C000000 		.4byte	0x2c
+ 226 0076 04       		.uleb128 0x4
+ 227 0077 D3000000 		.4byte	.LASF10
+ 228 007b 02       		.byte	0x2
+ 229 007c B4       		.byte	0xb4
+ 230 007d 3A000000 		.4byte	0x3a
+ 231 0081 02       		.uleb128 0x2
+ 232 0082 04       		.byte	0x4
+ 233 0083 04       		.byte	0x4
+ 234 0084 4D000000 		.4byte	.LASF11
+ 235 0088 02       		.uleb128 0x2
+ 236 0089 08       		.byte	0x8
+ 237 008a 04       		.byte	0x4
+ 238 008b CC000000 		.4byte	.LASF12
+ 239 008f 02       		.uleb128 0x2
+ 240 0090 01       		.byte	0x1
+ 241 0091 08       		.byte	0x8
+ 242 0092 04020000 		.4byte	.LASF13
+ 243 0096 05       		.uleb128 0x5
+ 244 0097 6C010000 		.4byte	.LASF14
+ 245 009b 02       		.byte	0x2
+ 246 009c 5D01     		.2byte	0x15d
+ 247 009e A2000000 		.4byte	0xa2
+ 248 00a2 06       		.uleb128 0x6
+ 249 00a3 6B000000 		.4byte	0x6b
+ 250 00a7 02       		.uleb128 0x2
+ 251 00a8 04       		.byte	0x4
+ 252 00a9 07       		.byte	0x7
+ 253 00aa ED010000 		.4byte	.LASF15
+ 254 00ae 07       		.uleb128 0x7
+ 255 00af 08       		.byte	0x8
+ 256 00b0 03       		.byte	0x3
+ 257 00b1 6B       		.byte	0x6b
+ 258 00b2 E7000000 		.4byte	0xe7
+ 259 00b6 08       		.uleb128 0x8
+ 260 00b7 71000000 		.4byte	.LASF16
+ 261 00bb 03       		.byte	0x3
+ 262 00bc 6E       		.byte	0x6e
+ 263 00bd 6B000000 		.4byte	0x6b
+ 264 00c1 00       		.byte	0
+ 265 00c2 08       		.uleb128 0x8
+ 266 00c3 00000000 		.4byte	.LASF17
+ 267 00c7 03       		.byte	0x3
+ 268 00c8 71       		.byte	0x71
+ 269 00c9 76000000 		.4byte	0x76
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccuTG893.s 			page 9
+
+
+ 270 00cd 02       		.byte	0x2
+ 271 00ce 08       		.uleb128 0x8
+ 272 00cf 07000000 		.4byte	.LASF18
+ 273 00d3 03       		.byte	0x3
+ 274 00d4 73       		.byte	0x73
+ 275 00d5 76000000 		.4byte	0x76
+ 276 00d9 04       		.byte	0x4
+ 277 00da 08       		.uleb128 0x8
+ 278 00db 8D020000 		.4byte	.LASF19
+ 279 00df 03       		.byte	0x3
+ 280 00e0 76       		.byte	0x76
+ 281 00e1 6B000000 		.4byte	0x6b
+ 282 00e5 06       		.byte	0x6
+ 283 00e6 00       		.byte	0
+ 284 00e7 04       		.uleb128 0x4
+ 285 00e8 21020000 		.4byte	.LASF20
+ 286 00ec 03       		.byte	0x3
+ 287 00ed 8B       		.byte	0x8b
+ 288 00ee AE000000 		.4byte	0xae
+ 289 00f2 09       		.uleb128 0x9
+ 290 00f3 57020000 		.4byte	.LASF21
+ 291 00f7 01       		.byte	0x1
+ 292 00f8 2A       		.byte	0x2a
+ 293 00f9 00000000 		.4byte	.LFB0
+ 294 00fd 20000000 		.4byte	.LFE0-.LFB0
+ 295 0101 01       		.uleb128 0x1
+ 296 0102 9C       		.byte	0x9c
+ 297 0103 1A010000 		.4byte	0x11a
+ 298 0107 0A       		.uleb128 0xa
+ 299 0108 06000000 		.4byte	.LVL0
+ 300 010c A3010000 		.4byte	0x1a3
+ 301 0110 0A       		.uleb128 0xa
+ 302 0111 0E000000 		.4byte	.LVL1
+ 303 0115 AE010000 		.4byte	0x1ae
+ 304 0119 00       		.byte	0
+ 305 011a 09       		.uleb128 0x9
+ 306 011b 37020000 		.4byte	.LASF22
+ 307 011f 01       		.byte	0x1
+ 308 0120 58       		.byte	0x58
+ 309 0121 00000000 		.4byte	.LFB1
+ 310 0125 20000000 		.4byte	.LFE1-.LFB1
+ 311 0129 01       		.uleb128 0x1
+ 312 012a 9C       		.byte	0x9c
+ 313 012b 42010000 		.4byte	0x142
+ 314 012f 0A       		.uleb128 0xa
+ 315 0130 0A000000 		.4byte	.LVL2
+ 316 0134 B9010000 		.4byte	0x1b9
+ 317 0138 0A       		.uleb128 0xa
+ 318 0139 10000000 		.4byte	.LVL3
+ 319 013d CA010000 		.4byte	0x1ca
+ 320 0141 00       		.byte	0
+ 321 0142 09       		.uleb128 0x9
+ 322 0143 98000000 		.4byte	.LASF23
+ 323 0147 01       		.byte	0x1
+ 324 0148 88       		.byte	0x88
+ 325 0149 00000000 		.4byte	.LFB2
+ 326 014d 0C000000 		.4byte	.LFE2-.LFB2
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccuTG893.s 			page 10
+
+
+ 327 0151 01       		.uleb128 0x1
+ 328 0152 9C       		.byte	0x9c
+ 329 0153 6A010000 		.4byte	0x16a
+ 330 0157 0A       		.uleb128 0xa
+ 331 0158 06000000 		.4byte	.LVL4
+ 332 015c DB010000 		.4byte	0x1db
+ 333 0160 0A       		.uleb128 0xa
+ 334 0161 0A000000 		.4byte	.LVL5
+ 335 0165 F2000000 		.4byte	0xf2
+ 336 0169 00       		.byte	0
+ 337 016a 09       		.uleb128 0x9
+ 338 016b A7000000 		.4byte	.LASF24
+ 339 016f 01       		.byte	0x1
+ 340 0170 B2       		.byte	0xb2
+ 341 0171 00000000 		.4byte	.LFB3
+ 342 0175 18000000 		.4byte	.LFE3-.LFB3
+ 343 0179 01       		.uleb128 0x1
+ 344 017a 9C       		.byte	0x9c
+ 345 017b 92010000 		.4byte	0x192
+ 346 017f 0A       		.uleb128 0xa
+ 347 0180 06000000 		.4byte	.LVL6
+ 348 0184 1A010000 		.4byte	0x11a
+ 349 0188 0A       		.uleb128 0xa
+ 350 0189 10000000 		.4byte	.LVL7
+ 351 018d E2010000 		.4byte	0x1e2
+ 352 0191 00       		.byte	0
+ 353 0192 0B       		.uleb128 0xb
+ 354 0193 61000000 		.4byte	.LASF34
+ 355 0197 01       		.byte	0x1
+ 356 0198 14       		.byte	0x14
+ 357 0199 E7000000 		.4byte	0xe7
+ 358 019d 05       		.uleb128 0x5
+ 359 019e 03       		.byte	0x3
+ 360 019f 00000000 		.4byte	EN_A_PWM_backup
+ 361 01a3 0C       		.uleb128 0xc
+ 362 01a4 11000000 		.4byte	.LASF25
+ 363 01a8 03       		.byte	0x3
+ 364 01a9 C0       		.byte	0xc0
+ 365 01aa 76000000 		.4byte	0x76
+ 366 01ae 0C       		.uleb128 0xc
+ 367 01af 38000000 		.4byte	.LASF26
+ 368 01b3 03       		.byte	0x3
+ 369 01b4 B3       		.byte	0xb3
+ 370 01b5 76000000 		.4byte	0x76
+ 371 01b9 0D       		.uleb128 0xd
+ 372 01ba B7000000 		.4byte	.LASF27
+ 373 01be 03       		.byte	0x3
+ 374 01bf BE       		.byte	0xbe
+ 375 01c0 CA010000 		.4byte	0x1ca
+ 376 01c4 0E       		.uleb128 0xe
+ 377 01c5 76000000 		.4byte	0x76
+ 378 01c9 00       		.byte	0
+ 379 01ca 0D       		.uleb128 0xd
+ 380 01cb 77020000 		.4byte	.LASF28
+ 381 01cf 03       		.byte	0x3
+ 382 01d0 BA       		.byte	0xba
+ 383 01d1 DB010000 		.4byte	0x1db
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccuTG893.s 			page 11
+
+
+ 384 01d5 0E       		.uleb128 0xe
+ 385 01d6 76000000 		.4byte	0x76
+ 386 01da 00       		.byte	0
+ 387 01db 0F       		.uleb128 0xf
+ 388 01dc 09020000 		.4byte	.LASF29
+ 389 01e0 03       		.byte	0x3
+ 390 01e1 93       		.byte	0x93
+ 391 01e2 0F       		.uleb128 0xf
+ 392 01e3 0E010000 		.4byte	.LASF30
+ 393 01e7 03       		.byte	0x3
+ 394 01e8 DB       		.byte	0xdb
+ 395 01e9 00       		.byte	0
+ 396              		.section	.debug_abbrev,"",%progbits
+ 397              	.Ldebug_abbrev0:
+ 398 0000 01       		.uleb128 0x1
+ 399 0001 11       		.uleb128 0x11
+ 400 0002 01       		.byte	0x1
+ 401 0003 25       		.uleb128 0x25
+ 402 0004 0E       		.uleb128 0xe
+ 403 0005 13       		.uleb128 0x13
+ 404 0006 0B       		.uleb128 0xb
+ 405 0007 03       		.uleb128 0x3
+ 406 0008 0E       		.uleb128 0xe
+ 407 0009 1B       		.uleb128 0x1b
+ 408 000a 0E       		.uleb128 0xe
+ 409 000b 55       		.uleb128 0x55
+ 410 000c 17       		.uleb128 0x17
+ 411 000d 11       		.uleb128 0x11
+ 412 000e 01       		.uleb128 0x1
+ 413 000f 10       		.uleb128 0x10
+ 414 0010 17       		.uleb128 0x17
+ 415 0011 00       		.byte	0
+ 416 0012 00       		.byte	0
+ 417 0013 02       		.uleb128 0x2
+ 418 0014 24       		.uleb128 0x24
+ 419 0015 00       		.byte	0
+ 420 0016 0B       		.uleb128 0xb
+ 421 0017 0B       		.uleb128 0xb
+ 422 0018 3E       		.uleb128 0x3e
+ 423 0019 0B       		.uleb128 0xb
+ 424 001a 03       		.uleb128 0x3
+ 425 001b 0E       		.uleb128 0xe
+ 426 001c 00       		.byte	0
+ 427 001d 00       		.byte	0
+ 428 001e 03       		.uleb128 0x3
+ 429 001f 24       		.uleb128 0x24
+ 430 0020 00       		.byte	0
+ 431 0021 0B       		.uleb128 0xb
+ 432 0022 0B       		.uleb128 0xb
+ 433 0023 3E       		.uleb128 0x3e
+ 434 0024 0B       		.uleb128 0xb
+ 435 0025 03       		.uleb128 0x3
+ 436 0026 08       		.uleb128 0x8
+ 437 0027 00       		.byte	0
+ 438 0028 00       		.byte	0
+ 439 0029 04       		.uleb128 0x4
+ 440 002a 16       		.uleb128 0x16
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccuTG893.s 			page 12
+
+
+ 441 002b 00       		.byte	0
+ 442 002c 03       		.uleb128 0x3
+ 443 002d 0E       		.uleb128 0xe
+ 444 002e 3A       		.uleb128 0x3a
+ 445 002f 0B       		.uleb128 0xb
+ 446 0030 3B       		.uleb128 0x3b
+ 447 0031 0B       		.uleb128 0xb
+ 448 0032 49       		.uleb128 0x49
+ 449 0033 13       		.uleb128 0x13
+ 450 0034 00       		.byte	0
+ 451 0035 00       		.byte	0
+ 452 0036 05       		.uleb128 0x5
+ 453 0037 16       		.uleb128 0x16
+ 454 0038 00       		.byte	0
+ 455 0039 03       		.uleb128 0x3
+ 456 003a 0E       		.uleb128 0xe
+ 457 003b 3A       		.uleb128 0x3a
+ 458 003c 0B       		.uleb128 0xb
+ 459 003d 3B       		.uleb128 0x3b
+ 460 003e 05       		.uleb128 0x5
+ 461 003f 49       		.uleb128 0x49
+ 462 0040 13       		.uleb128 0x13
+ 463 0041 00       		.byte	0
+ 464 0042 00       		.byte	0
+ 465 0043 06       		.uleb128 0x6
+ 466 0044 35       		.uleb128 0x35
+ 467 0045 00       		.byte	0
+ 468 0046 49       		.uleb128 0x49
+ 469 0047 13       		.uleb128 0x13
+ 470 0048 00       		.byte	0
+ 471 0049 00       		.byte	0
+ 472 004a 07       		.uleb128 0x7
+ 473 004b 13       		.uleb128 0x13
+ 474 004c 01       		.byte	0x1
+ 475 004d 0B       		.uleb128 0xb
+ 476 004e 0B       		.uleb128 0xb
+ 477 004f 3A       		.uleb128 0x3a
+ 478 0050 0B       		.uleb128 0xb
+ 479 0051 3B       		.uleb128 0x3b
+ 480 0052 0B       		.uleb128 0xb
+ 481 0053 01       		.uleb128 0x1
+ 482 0054 13       		.uleb128 0x13
+ 483 0055 00       		.byte	0
+ 484 0056 00       		.byte	0
+ 485 0057 08       		.uleb128 0x8
+ 486 0058 0D       		.uleb128 0xd
+ 487 0059 00       		.byte	0
+ 488 005a 03       		.uleb128 0x3
+ 489 005b 0E       		.uleb128 0xe
+ 490 005c 3A       		.uleb128 0x3a
+ 491 005d 0B       		.uleb128 0xb
+ 492 005e 3B       		.uleb128 0x3b
+ 493 005f 0B       		.uleb128 0xb
+ 494 0060 49       		.uleb128 0x49
+ 495 0061 13       		.uleb128 0x13
+ 496 0062 38       		.uleb128 0x38
+ 497 0063 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccuTG893.s 			page 13
+
+
+ 498 0064 00       		.byte	0
+ 499 0065 00       		.byte	0
+ 500 0066 09       		.uleb128 0x9
+ 501 0067 2E       		.uleb128 0x2e
+ 502 0068 01       		.byte	0x1
+ 503 0069 3F       		.uleb128 0x3f
+ 504 006a 19       		.uleb128 0x19
+ 505 006b 03       		.uleb128 0x3
+ 506 006c 0E       		.uleb128 0xe
+ 507 006d 3A       		.uleb128 0x3a
+ 508 006e 0B       		.uleb128 0xb
+ 509 006f 3B       		.uleb128 0x3b
+ 510 0070 0B       		.uleb128 0xb
+ 511 0071 27       		.uleb128 0x27
+ 512 0072 19       		.uleb128 0x19
+ 513 0073 11       		.uleb128 0x11
+ 514 0074 01       		.uleb128 0x1
+ 515 0075 12       		.uleb128 0x12
+ 516 0076 06       		.uleb128 0x6
+ 517 0077 40       		.uleb128 0x40
+ 518 0078 18       		.uleb128 0x18
+ 519 0079 9742     		.uleb128 0x2117
+ 520 007b 19       		.uleb128 0x19
+ 521 007c 01       		.uleb128 0x1
+ 522 007d 13       		.uleb128 0x13
+ 523 007e 00       		.byte	0
+ 524 007f 00       		.byte	0
+ 525 0080 0A       		.uleb128 0xa
+ 526 0081 898201   		.uleb128 0x4109
+ 527 0084 00       		.byte	0
+ 528 0085 11       		.uleb128 0x11
+ 529 0086 01       		.uleb128 0x1
+ 530 0087 31       		.uleb128 0x31
+ 531 0088 13       		.uleb128 0x13
+ 532 0089 00       		.byte	0
+ 533 008a 00       		.byte	0
+ 534 008b 0B       		.uleb128 0xb
+ 535 008c 34       		.uleb128 0x34
+ 536 008d 00       		.byte	0
+ 537 008e 03       		.uleb128 0x3
+ 538 008f 0E       		.uleb128 0xe
+ 539 0090 3A       		.uleb128 0x3a
+ 540 0091 0B       		.uleb128 0xb
+ 541 0092 3B       		.uleb128 0x3b
+ 542 0093 0B       		.uleb128 0xb
+ 543 0094 49       		.uleb128 0x49
+ 544 0095 13       		.uleb128 0x13
+ 545 0096 02       		.uleb128 0x2
+ 546 0097 18       		.uleb128 0x18
+ 547 0098 00       		.byte	0
+ 548 0099 00       		.byte	0
+ 549 009a 0C       		.uleb128 0xc
+ 550 009b 2E       		.uleb128 0x2e
+ 551 009c 00       		.byte	0
+ 552 009d 3F       		.uleb128 0x3f
+ 553 009e 19       		.uleb128 0x19
+ 554 009f 03       		.uleb128 0x3
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccuTG893.s 			page 14
+
+
+ 555 00a0 0E       		.uleb128 0xe
+ 556 00a1 3A       		.uleb128 0x3a
+ 557 00a2 0B       		.uleb128 0xb
+ 558 00a3 3B       		.uleb128 0x3b
+ 559 00a4 0B       		.uleb128 0xb
+ 560 00a5 27       		.uleb128 0x27
+ 561 00a6 19       		.uleb128 0x19
+ 562 00a7 49       		.uleb128 0x49
+ 563 00a8 13       		.uleb128 0x13
+ 564 00a9 3C       		.uleb128 0x3c
+ 565 00aa 19       		.uleb128 0x19
+ 566 00ab 00       		.byte	0
+ 567 00ac 00       		.byte	0
+ 568 00ad 0D       		.uleb128 0xd
+ 569 00ae 2E       		.uleb128 0x2e
+ 570 00af 01       		.byte	0x1
+ 571 00b0 3F       		.uleb128 0x3f
+ 572 00b1 19       		.uleb128 0x19
+ 573 00b2 03       		.uleb128 0x3
+ 574 00b3 0E       		.uleb128 0xe
+ 575 00b4 3A       		.uleb128 0x3a
+ 576 00b5 0B       		.uleb128 0xb
+ 577 00b6 3B       		.uleb128 0x3b
+ 578 00b7 0B       		.uleb128 0xb
+ 579 00b8 27       		.uleb128 0x27
+ 580 00b9 19       		.uleb128 0x19
+ 581 00ba 3C       		.uleb128 0x3c
+ 582 00bb 19       		.uleb128 0x19
+ 583 00bc 01       		.uleb128 0x1
+ 584 00bd 13       		.uleb128 0x13
+ 585 00be 00       		.byte	0
+ 586 00bf 00       		.byte	0
+ 587 00c0 0E       		.uleb128 0xe
+ 588 00c1 05       		.uleb128 0x5
+ 589 00c2 00       		.byte	0
+ 590 00c3 49       		.uleb128 0x49
+ 591 00c4 13       		.uleb128 0x13
+ 592 00c5 00       		.byte	0
+ 593 00c6 00       		.byte	0
+ 594 00c7 0F       		.uleb128 0xf
+ 595 00c8 2E       		.uleb128 0x2e
+ 596 00c9 00       		.byte	0
+ 597 00ca 3F       		.uleb128 0x3f
+ 598 00cb 19       		.uleb128 0x19
+ 599 00cc 03       		.uleb128 0x3
+ 600 00cd 0E       		.uleb128 0xe
+ 601 00ce 3A       		.uleb128 0x3a
+ 602 00cf 0B       		.uleb128 0xb
+ 603 00d0 3B       		.uleb128 0x3b
+ 604 00d1 0B       		.uleb128 0xb
+ 605 00d2 27       		.uleb128 0x27
+ 606 00d3 19       		.uleb128 0x19
+ 607 00d4 3C       		.uleb128 0x3c
+ 608 00d5 19       		.uleb128 0x19
+ 609 00d6 00       		.byte	0
+ 610 00d7 00       		.byte	0
+ 611 00d8 00       		.byte	0
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccuTG893.s 			page 15
+
+
+ 612              		.section	.debug_aranges,"",%progbits
+ 613 0000 34000000 		.4byte	0x34
+ 614 0004 0200     		.2byte	0x2
+ 615 0006 00000000 		.4byte	.Ldebug_info0
+ 616 000a 04       		.byte	0x4
+ 617 000b 00       		.byte	0
+ 618 000c 0000     		.2byte	0
+ 619 000e 0000     		.2byte	0
+ 620 0010 00000000 		.4byte	.LFB0
+ 621 0014 20000000 		.4byte	.LFE0-.LFB0
+ 622 0018 00000000 		.4byte	.LFB1
+ 623 001c 20000000 		.4byte	.LFE1-.LFB1
+ 624 0020 00000000 		.4byte	.LFB2
+ 625 0024 0C000000 		.4byte	.LFE2-.LFB2
+ 626 0028 00000000 		.4byte	.LFB3
+ 627 002c 18000000 		.4byte	.LFE3-.LFB3
+ 628 0030 00000000 		.4byte	0
+ 629 0034 00000000 		.4byte	0
+ 630              		.section	.debug_ranges,"",%progbits
+ 631              	.Ldebug_ranges0:
+ 632 0000 00000000 		.4byte	.LFB0
+ 633 0004 20000000 		.4byte	.LFE0
+ 634 0008 00000000 		.4byte	.LFB1
+ 635 000c 20000000 		.4byte	.LFE1
+ 636 0010 00000000 		.4byte	.LFB2
+ 637 0014 0C000000 		.4byte	.LFE2
+ 638 0018 00000000 		.4byte	.LFB3
+ 639 001c 18000000 		.4byte	.LFE3
+ 640 0020 00000000 		.4byte	0
+ 641 0024 00000000 		.4byte	0
+ 642              		.section	.debug_line,"",%progbits
+ 643              	.Ldebug_line0:
+ 644 0000 AA000000 		.section	.debug_str,"MS",%progbits,1
+ 644      02005800 
+ 644      00000201 
+ 644      FB0E0D00 
+ 644      01010101 
+ 645              	.LASF17:
+ 646 0000 50574D55 		.ascii	"PWMUdb\000"
+ 646      646200
+ 647              	.LASF18:
+ 648 0007 50574D50 		.ascii	"PWMPeriod\000"
+ 648      6572696F 
+ 648      6400
+ 649              	.LASF25:
+ 650 0011 454E5F41 		.ascii	"EN_A_PWM_ReadPeriod\000"
+ 650      5F50574D 
+ 650      5F526561 
+ 650      64506572 
+ 650      696F6400 
+ 651              	.LASF3:
+ 652 0025 73686F72 		.ascii	"short unsigned int\000"
+ 652      7420756E 
+ 652      7369676E 
+ 652      65642069 
+ 652      6E7400
+ 653              	.LASF26:
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccuTG893.s 			page 16
+
+
+ 654 0038 454E5F41 		.ascii	"EN_A_PWM_ReadCounter\000"
+ 654      5F50574D 
+ 654      5F526561 
+ 654      64436F75 
+ 654      6E746572 
+ 655              	.LASF11:
+ 656 004d 666C6F61 		.ascii	"float\000"
+ 656      7400
+ 657              	.LASF1:
+ 658 0053 756E7369 		.ascii	"unsigned char\000"
+ 658      676E6564 
+ 658      20636861 
+ 658      7200
+ 659              	.LASF34:
+ 660 0061 454E5F41 		.ascii	"EN_A_PWM_backup\000"
+ 660      5F50574D 
+ 660      5F626163 
+ 660      6B757000 
+ 661              	.LASF16:
+ 662 0071 50574D45 		.ascii	"PWMEnableState\000"
+ 662      6E61626C 
+ 662      65537461 
+ 662      746500
+ 663              	.LASF5:
+ 664 0080 6C6F6E67 		.ascii	"long unsigned int\000"
+ 664      20756E73 
+ 664      69676E65 
+ 664      6420696E 
+ 664      7400
+ 665              	.LASF9:
+ 666 0092 75696E74 		.ascii	"uint8\000"
+ 666      3800
+ 667              	.LASF23:
+ 668 0098 454E5F41 		.ascii	"EN_A_PWM_Sleep\000"
+ 668      5F50574D 
+ 668      5F536C65 
+ 668      657000
+ 669              	.LASF24:
+ 670 00a7 454E5F41 		.ascii	"EN_A_PWM_Wakeup\000"
+ 670      5F50574D 
+ 670      5F57616B 
+ 670      65757000 
+ 671              	.LASF27:
+ 672 00b7 454E5F41 		.ascii	"EN_A_PWM_WritePeriod\000"
+ 672      5F50574D 
+ 672      5F577269 
+ 672      74655065 
+ 672      72696F64 
+ 673              	.LASF12:
+ 674 00cc 646F7562 		.ascii	"double\000"
+ 674      6C6500
+ 675              	.LASF10:
+ 676 00d3 75696E74 		.ascii	"uint16\000"
+ 676      313600
+ 677              	.LASF8:
+ 678 00da 756E7369 		.ascii	"unsigned int\000"
+ 678      676E6564 
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccuTG893.s 			page 17
+
+
+ 678      20696E74 
+ 678      00
+ 679              	.LASF32:
+ 680 00e7 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\EN_A_PWM_PM.c\000"
+ 680      6E657261 
+ 680      7465645F 
+ 680      536F7572 
+ 680      63655C50 
+ 681              	.LASF30:
+ 682 010e 454E5F41 		.ascii	"EN_A_PWM_Enable\000"
+ 682      5F50574D 
+ 682      5F456E61 
+ 682      626C6500 
+ 683              	.LASF7:
+ 684 011e 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 684      206C6F6E 
+ 684      6720756E 
+ 684      7369676E 
+ 684      65642069 
+ 685              	.LASF33:
+ 686 0135 433A5C55 		.ascii	"C:\\Users\\Jorden\\Documents\\PSoC Creator\\Test\\T"
+ 686      73657273 
+ 686      5C4A6F72 
+ 686      64656E5C 
+ 686      446F6375 
+ 687 0162 6573742E 		.ascii	"est.cydsn\000"
+ 687      63796473 
+ 687      6E00
+ 688              	.LASF14:
+ 689 016c 72656738 		.ascii	"reg8\000"
+ 689      00
+ 690              	.LASF31:
+ 691 0171 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 691      4320342E 
+ 691      382E3420 
+ 691      32303134 
+ 691      30353236 
+ 692 01a4 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m3 -mthumb -g -O"
+ 692      20726576 
+ 692      6973696F 
+ 692      6E203231 
+ 692      31333538 
+ 693 01d7 67202D66 		.ascii	"g -ffunction-sections\000"
+ 693      66756E63 
+ 693      74696F6E 
+ 693      2D736563 
+ 693      74696F6E 
+ 694              	.LASF15:
+ 695 01ed 73697A65 		.ascii	"sizetype\000"
+ 695      74797065 
+ 695      00
+ 696              	.LASF6:
+ 697 01f6 6C6F6E67 		.ascii	"long long int\000"
+ 697      206C6F6E 
+ 697      6720696E 
+ 697      7400
+ 698              	.LASF13:
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccuTG893.s 			page 18
+
+
+ 699 0204 63686172 		.ascii	"char\000"
+ 699      00
+ 700              	.LASF29:
+ 701 0209 454E5F41 		.ascii	"EN_A_PWM_Stop\000"
+ 701      5F50574D 
+ 701      5F53746F 
+ 701      7000
+ 702              	.LASF2:
+ 703 0217 73686F72 		.ascii	"short int\000"
+ 703      7420696E 
+ 703      7400
+ 704              	.LASF20:
+ 705 0221 454E5F41 		.ascii	"EN_A_PWM_backupStruct\000"
+ 705      5F50574D 
+ 705      5F626163 
+ 705      6B757053 
+ 705      74727563 
+ 706              	.LASF22:
+ 707 0237 454E5F41 		.ascii	"EN_A_PWM_RestoreConfig\000"
+ 707      5F50574D 
+ 707      5F526573 
+ 707      746F7265 
+ 707      436F6E66 
+ 708              	.LASF4:
+ 709 024e 6C6F6E67 		.ascii	"long int\000"
+ 709      20696E74 
+ 709      00
+ 710              	.LASF21:
+ 711 0257 454E5F41 		.ascii	"EN_A_PWM_SaveConfig\000"
+ 711      5F50574D 
+ 711      5F536176 
+ 711      65436F6E 
+ 711      66696700 
+ 712              	.LASF0:
+ 713 026b 7369676E 		.ascii	"signed char\000"
+ 713      65642063 
+ 713      68617200 
+ 714              	.LASF28:
+ 715 0277 454E5F41 		.ascii	"EN_A_PWM_WriteCounter\000"
+ 715      5F50574D 
+ 715      5F577269 
+ 715      7465436F 
+ 715      756E7465 
+ 716              	.LASF19:
+ 717 028d 496E7465 		.ascii	"InterruptMaskValue\000"
+ 717      72727570 
+ 717      744D6173 
+ 717      6B56616C 
+ 717      756500
+ 718              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br

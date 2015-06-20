@@ -1,0 +1,1713 @@
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccmLy2Lk.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"motordriver.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.setSpeed,"ax",%progbits
+  19              		.align	2
+  20              		.global	setSpeed
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	setSpeed, %function
+  24              	setSpeed:
+  25              	.LFB63:
+  26              		.file 1 ".\\motordriver.c"
+   1:.\motordriver.c **** /* ========================================
+   2:.\motordriver.c ****  *
+   3:.\motordriver.c ****  * Copyright YOUR COMPANY, THE YEAR
+   4:.\motordriver.c ****  * All Rights Reserved
+   5:.\motordriver.c ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:.\motordriver.c ****  *
+   7:.\motordriver.c ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:.\motordriver.c ****  * WHICH IS THE PROPERTY OF your company.
+   9:.\motordriver.c ****  *
+  10:.\motordriver.c ****  * ========================================
+  11:.\motordriver.c **** */
+  12:.\motordriver.c **** #include"motordriver.h"
+  13:.\motordriver.c **** #include"project.h"
+  14:.\motordriver.c **** 
+  15:.\motordriver.c **** void setSpeed(uint16 speed, uint8_t motorID)
+  16:.\motordriver.c **** {
+  27              		.loc 1 16 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              	.LVL0:
+  32 0000 08B5     		push	{r3, lr}
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 3, -8
+  35              		.cfi_offset 14, -4
+  17:.\motordriver.c ****     if(motorID == MOTOR_A)
+  36              		.loc 1 17 0
+  37 0002 11B9     		cbnz	r1, .L2
+  18:.\motordriver.c ****     {
+  19:.\motordriver.c ****         EN_A_PWM_WriteCompare(speed);
+  38              		.loc 1 19 0
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccmLy2Lk.s 			page 2
+
+
+  39 0004 FFF7FEFF 		bl	EN_A_PWM_WriteCompare
+  40              	.LVL1:
+  41 0008 08BD     		pop	{r3, pc}
+  42              	.LVL2:
+  43              	.L2:
+  20:.\motordriver.c ****     } 
+  21:.\motordriver.c ****     else
+  22:.\motordriver.c ****     {
+  23:.\motordriver.c ****         EN_B_PWM_WriteCompare(speed);
+  44              		.loc 1 23 0
+  45 000a FFF7FEFF 		bl	EN_B_PWM_WriteCompare
+  46              	.LVL3:
+  47 000e 08BD     		pop	{r3, pc}
+  48              		.cfi_endproc
+  49              	.LFE63:
+  50              		.size	setSpeed, .-setSpeed
+  51              		.section	.text.setDirection,"ax",%progbits
+  52              		.align	2
+  53              		.global	setDirection
+  54              		.thumb
+  55              		.thumb_func
+  56              		.type	setDirection, %function
+  57              	setDirection:
+  58              	.LFB64:
+  24:.\motordriver.c ****     }
+  25:.\motordriver.c **** }
+  26:.\motordriver.c **** void setDirection(uint8_t direction, uint8_t motorID)
+  27:.\motordriver.c **** {
+  59              		.loc 1 27 0
+  60              		.cfi_startproc
+  61              		@ args = 0, pretend = 0, frame = 0
+  62              		@ frame_needed = 0, uses_anonymous_args = 0
+  63              	.LVL4:
+  64 0000 10B5     		push	{r4, lr}
+  65              		.cfi_def_cfa_offset 8
+  66              		.cfi_offset 4, -8
+  67              		.cfi_offset 14, -4
+  68 0002 0446     		mov	r4, r0
+  28:.\motordriver.c ****     uint8_t temp;
+  29:.\motordriver.c ****     
+  30:.\motordriver.c ****     if(motorID == MOTOR_A)
+  69              		.loc 1 30 0
+  70 0004 39B9     		cbnz	r1, .L5
+  31:.\motordriver.c ****     {
+  32:.\motordriver.c ****         temp = Motor_A_Read();
+  71              		.loc 1 32 0
+  72 0006 FFF7FEFF 		bl	Motor_A_Read
+  73              	.LVL5:
+  33:.\motordriver.c ****         temp = temp & 0x1;
+  74              		.loc 1 33 0
+  75 000a 00F00100 		and	r0, r0, #1
+  76              	.LVL6:
+  34:.\motordriver.c ****         temp = temp | direction;
+  35:.\motordriver.c ****         Motor_A_Write(temp);
+  77              		.loc 1 35 0
+  78 000e 2043     		orrs	r0, r0, r4
+  79              	.LVL7:
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccmLy2Lk.s 			page 3
+
+
+  80 0010 FFF7FEFF 		bl	Motor_A_Write
+  81              	.LVL8:
+  82 0014 10BD     		pop	{r4, pc}
+  83              	.LVL9:
+  84              	.L5:
+  36:.\motordriver.c ****     }
+  37:.\motordriver.c ****     else
+  38:.\motordriver.c ****     {
+  39:.\motordriver.c ****         temp = Motor_B_Read();
+  85              		.loc 1 39 0
+  86 0016 FFF7FEFF 		bl	Motor_B_Read
+  87              	.LVL10:
+  40:.\motordriver.c ****         temp = temp & 0x1;
+  88              		.loc 1 40 0
+  89 001a 00F00100 		and	r0, r0, #1
+  90              	.LVL11:
+  41:.\motordriver.c ****         temp = temp | direction;
+  42:.\motordriver.c ****         Motor_B_Write(temp);    
+  91              		.loc 1 42 0
+  92 001e 2043     		orrs	r0, r0, r4
+  93              	.LVL12:
+  94 0020 FFF7FEFF 		bl	Motor_B_Write
+  95              	.LVL13:
+  96 0024 10BD     		pop	{r4, pc}
+  97              		.cfi_endproc
+  98              	.LFE64:
+  99              		.size	setDirection, .-setDirection
+ 100 0026 00BF     		.section	.text.rotateMotor,"ax",%progbits
+ 101              		.align	2
+ 102              		.global	rotateMotor
+ 103              		.thumb
+ 104              		.thumb_func
+ 105              		.type	rotateMotor, %function
+ 106              	rotateMotor:
+ 107              	.LFB65:
+  43:.\motordriver.c ****     }
+  44:.\motordriver.c **** }
+  45:.\motordriver.c **** void rotateMotor(uint8_t direction, uint8_t motorID)
+  46:.\motordriver.c **** {
+ 108              		.loc 1 46 0
+ 109              		.cfi_startproc
+ 110              		@ args = 0, pretend = 0, frame = 0
+ 111              		@ frame_needed = 0, uses_anonymous_args = 0
+ 112              	.LVL14:
+ 113 0000 08B5     		push	{r3, lr}
+ 114              		.cfi_def_cfa_offset 8
+ 115              		.cfi_offset 3, -8
+ 116              		.cfi_offset 14, -4
+ 117              	.LVL15:
+  47:.\motordriver.c ****     uint8_t temp = 0x1;
+  48:.\motordriver.c ****     if(motorID == MOTOR_A)
+ 118              		.loc 1 48 0
+ 119 0002 21B9     		cbnz	r1, .L8
+ 120              	.LVL16:
+  49:.\motordriver.c ****     {
+  50:.\motordriver.c ****         
+  51:.\motordriver.c ****         temp = temp | direction;
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccmLy2Lk.s 			page 4
+
+
+  52:.\motordriver.c ****         Motor_A_Write(temp);        
+ 121              		.loc 1 52 0
+ 122 0004 40F00100 		orr	r0, r0, #1
+ 123              	.LVL17:
+ 124 0008 FFF7FEFF 		bl	Motor_A_Write
+ 125              	.LVL18:
+ 126 000c 08BD     		pop	{r3, pc}
+ 127              	.LVL19:
+ 128              	.L8:
+  53:.\motordriver.c ****     }
+  54:.\motordriver.c ****     else
+  55:.\motordriver.c ****     {
+  56:.\motordriver.c ****         
+  57:.\motordriver.c ****         temp = temp | direction;
+  58:.\motordriver.c ****         Motor_B_Write(temp);
+ 129              		.loc 1 58 0
+ 130 000e 40F00100 		orr	r0, r0, #1
+ 131              	.LVL20:
+ 132 0012 FFF7FEFF 		bl	Motor_B_Write
+ 133              	.LVL21:
+ 134 0016 08BD     		pop	{r3, pc}
+ 135              		.cfi_endproc
+ 136              	.LFE65:
+ 137              		.size	rotateMotor, .-rotateMotor
+ 138              		.section	.text.goForward,"ax",%progbits
+ 139              		.align	2
+ 140              		.global	goForward
+ 141              		.thumb
+ 142              		.thumb_func
+ 143              		.type	goForward, %function
+ 144              	goForward:
+ 145              	.LFB66:
+  59:.\motordriver.c ****     }
+  60:.\motordriver.c **** }
+  61:.\motordriver.c **** void goForward()
+  62:.\motordriver.c **** {
+ 146              		.loc 1 62 0
+ 147              		.cfi_startproc
+ 148              		@ args = 0, pretend = 0, frame = 0
+ 149              		@ frame_needed = 0, uses_anonymous_args = 0
+ 150 0000 08B5     		push	{r3, lr}
+ 151              		.cfi_def_cfa_offset 8
+ 152              		.cfi_offset 3, -8
+ 153              		.cfi_offset 14, -4
+  63:.\motordriver.c ****      rotateMotor(ANTICLOCKWISE,MOTOR_A);
+ 154              		.loc 1 63 0
+ 155 0002 0420     		movs	r0, #4
+ 156 0004 0021     		movs	r1, #0
+ 157 0006 FFF7FEFF 		bl	rotateMotor
+ 158              	.LVL22:
+  64:.\motordriver.c ****      rotateMotor(ANTICLOCKWISE,MOTOR_B);  
+ 159              		.loc 1 64 0
+ 160 000a 0420     		movs	r0, #4
+ 161 000c 0121     		movs	r1, #1
+ 162 000e FFF7FEFF 		bl	rotateMotor
+ 163              	.LVL23:
+ 164 0012 08BD     		pop	{r3, pc}
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccmLy2Lk.s 			page 5
+
+
+ 165              		.cfi_endproc
+ 166              	.LFE66:
+ 167              		.size	goForward, .-goForward
+ 168              		.section	.text.goBackward,"ax",%progbits
+ 169              		.align	2
+ 170              		.global	goBackward
+ 171              		.thumb
+ 172              		.thumb_func
+ 173              		.type	goBackward, %function
+ 174              	goBackward:
+ 175              	.LFB67:
+  65:.\motordriver.c **** }
+  66:.\motordriver.c **** void goBackward()
+  67:.\motordriver.c **** {
+ 176              		.loc 1 67 0
+ 177              		.cfi_startproc
+ 178              		@ args = 0, pretend = 0, frame = 0
+ 179              		@ frame_needed = 0, uses_anonymous_args = 0
+ 180 0000 08B5     		push	{r3, lr}
+ 181              		.cfi_def_cfa_offset 8
+ 182              		.cfi_offset 3, -8
+ 183              		.cfi_offset 14, -4
+  68:.\motordriver.c ****      rotateMotor(CLOCKWISE,MOTOR_A);
+ 184              		.loc 1 68 0
+ 185 0002 0220     		movs	r0, #2
+ 186 0004 0021     		movs	r1, #0
+ 187 0006 FFF7FEFF 		bl	rotateMotor
+ 188              	.LVL24:
+  69:.\motordriver.c ****      rotateMotor(CLOCKWISE,MOTOR_B); 
+ 189              		.loc 1 69 0
+ 190 000a 0220     		movs	r0, #2
+ 191 000c 0121     		movs	r1, #1
+ 192 000e FFF7FEFF 		bl	rotateMotor
+ 193              	.LVL25:
+ 194 0012 08BD     		pop	{r3, pc}
+ 195              		.cfi_endproc
+ 196              	.LFE67:
+ 197              		.size	goBackward, .-goBackward
+ 198              		.section	.text.goLeft,"ax",%progbits
+ 199              		.align	2
+ 200              		.global	goLeft
+ 201              		.thumb
+ 202              		.thumb_func
+ 203              		.type	goLeft, %function
+ 204              	goLeft:
+ 205              	.LFB68:
+  70:.\motordriver.c **** }
+  71:.\motordriver.c **** void goLeft()
+  72:.\motordriver.c **** {
+ 206              		.loc 1 72 0
+ 207              		.cfi_startproc
+ 208              		@ args = 0, pretend = 0, frame = 0
+ 209              		@ frame_needed = 0, uses_anonymous_args = 0
+ 210 0000 08B5     		push	{r3, lr}
+ 211              		.cfi_def_cfa_offset 8
+ 212              		.cfi_offset 3, -8
+ 213              		.cfi_offset 14, -4
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccmLy2Lk.s 			page 6
+
+
+  73:.\motordriver.c ****     rotateMotor(CLOCKWISE,MOTOR_A);
+ 214              		.loc 1 73 0
+ 215 0002 0220     		movs	r0, #2
+ 216 0004 0021     		movs	r1, #0
+ 217 0006 FFF7FEFF 		bl	rotateMotor
+ 218              	.LVL26:
+  74:.\motordriver.c ****     rotateMotor(ANTICLOCKWISE, MOTOR_B);
+ 219              		.loc 1 74 0
+ 220 000a 0420     		movs	r0, #4
+ 221 000c 0121     		movs	r1, #1
+ 222 000e FFF7FEFF 		bl	rotateMotor
+ 223              	.LVL27:
+ 224 0012 08BD     		pop	{r3, pc}
+ 225              		.cfi_endproc
+ 226              	.LFE68:
+ 227              		.size	goLeft, .-goLeft
+ 228              		.section	.text.goRight,"ax",%progbits
+ 229              		.align	2
+ 230              		.global	goRight
+ 231              		.thumb
+ 232              		.thumb_func
+ 233              		.type	goRight, %function
+ 234              	goRight:
+ 235              	.LFB69:
+  75:.\motordriver.c **** }
+  76:.\motordriver.c **** void goRight()
+  77:.\motordriver.c **** {
+ 236              		.loc 1 77 0
+ 237              		.cfi_startproc
+ 238              		@ args = 0, pretend = 0, frame = 0
+ 239              		@ frame_needed = 0, uses_anonymous_args = 0
+ 240 0000 08B5     		push	{r3, lr}
+ 241              		.cfi_def_cfa_offset 8
+ 242              		.cfi_offset 3, -8
+ 243              		.cfi_offset 14, -4
+  78:.\motordriver.c ****     rotateMotor(CLOCKWISE,MOTOR_B);
+ 244              		.loc 1 78 0
+ 245 0002 0220     		movs	r0, #2
+ 246 0004 0121     		movs	r1, #1
+ 247 0006 FFF7FEFF 		bl	rotateMotor
+ 248              	.LVL28:
+  79:.\motordriver.c ****     rotateMotor(ANTICLOCKWISE, MOTOR_A);
+ 249              		.loc 1 79 0
+ 250 000a 0420     		movs	r0, #4
+ 251 000c 0021     		movs	r1, #0
+ 252 000e FFF7FEFF 		bl	rotateMotor
+ 253              	.LVL29:
+ 254 0012 08BD     		pop	{r3, pc}
+ 255              		.cfi_endproc
+ 256              	.LFE69:
+ 257              		.size	goRight, .-goRight
+ 258              		.section	.text.stop_all,"ax",%progbits
+ 259              		.align	2
+ 260              		.global	stop_all
+ 261              		.thumb
+ 262              		.thumb_func
+ 263              		.type	stop_all, %function
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccmLy2Lk.s 			page 7
+
+
+ 264              	stop_all:
+ 265              	.LFB70:
+  80:.\motordriver.c **** }
+  81:.\motordriver.c **** void stop_all()
+  82:.\motordriver.c **** {
+ 266              		.loc 1 82 0
+ 267              		.cfi_startproc
+ 268              		@ args = 0, pretend = 0, frame = 0
+ 269              		@ frame_needed = 0, uses_anonymous_args = 0
+ 270 0000 08B5     		push	{r3, lr}
+ 271              		.cfi_def_cfa_offset 8
+ 272              		.cfi_offset 3, -8
+ 273              		.cfi_offset 14, -4
+  83:.\motordriver.c ****     Motor_A_Write(0);
+ 274              		.loc 1 83 0
+ 275 0002 0020     		movs	r0, #0
+ 276 0004 FFF7FEFF 		bl	Motor_A_Write
+ 277              	.LVL30:
+  84:.\motordriver.c ****     Motor_B_Write(0);
+ 278              		.loc 1 84 0
+ 279 0008 0020     		movs	r0, #0
+ 280 000a FFF7FEFF 		bl	Motor_B_Write
+ 281              	.LVL31:
+ 282 000e 08BD     		pop	{r3, pc}
+ 283              		.cfi_endproc
+ 284              	.LFE70:
+ 285              		.size	stop_all, .-stop_all
+ 286              		.section	.text.stop,"ax",%progbits
+ 287              		.align	2
+ 288              		.global	stop
+ 289              		.thumb
+ 290              		.thumb_func
+ 291              		.type	stop, %function
+ 292              	stop:
+ 293              	.LFB71:
+  85:.\motordriver.c **** }
+  86:.\motordriver.c **** void stop(uint8_t motorID)
+  87:.\motordriver.c **** {
+ 294              		.loc 1 87 0
+ 295              		.cfi_startproc
+ 296              		@ args = 0, pretend = 0, frame = 0
+ 297              		@ frame_needed = 0, uses_anonymous_args = 0
+ 298              	.LVL32:
+ 299 0000 08B5     		push	{r3, lr}
+ 300              		.cfi_def_cfa_offset 8
+ 301              		.cfi_offset 3, -8
+ 302              		.cfi_offset 14, -4
+  88:.\motordriver.c ****     if(motorID == MOTOR_A)
+ 303              		.loc 1 88 0
+ 304 0002 10B9     		cbnz	r0, .L16
+  89:.\motordriver.c ****     {
+  90:.\motordriver.c ****         Motor_A_Write(0);
+ 305              		.loc 1 90 0
+ 306 0004 FFF7FEFF 		bl	Motor_A_Write
+ 307              	.LVL33:
+ 308 0008 08BD     		pop	{r3, pc}
+ 309              	.LVL34:
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccmLy2Lk.s 			page 8
+
+
+ 310              	.L16:
+  91:.\motordriver.c ****     }
+  92:.\motordriver.c ****     else
+  93:.\motordriver.c ****     {
+  94:.\motordriver.c ****         Motor_B_Write(0);   
+ 311              		.loc 1 94 0
+ 312 000a 0020     		movs	r0, #0
+ 313              	.LVL35:
+ 314 000c FFF7FEFF 		bl	Motor_B_Write
+ 315              	.LVL36:
+ 316 0010 08BD     		pop	{r3, pc}
+ 317              		.cfi_endproc
+ 318              	.LFE71:
+ 319              		.size	stop, .-stop
+ 320 0012 00BF     		.text
+ 321              	.Letext0:
+ 322              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.2\\psoc creator\\import\\gnu\\arm\\4.8.
+ 323              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\3.2\\psoc creator\\import\\gnu\\arm\\4.8.
+ 324              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 325              		.file 5 "Generated_Source\\PSoC5/EN_A_PWM.h"
+ 326              		.file 6 "Generated_Source\\PSoC5/EN_B_PWM.h"
+ 327              		.file 7 "Generated_Source\\PSoC5/Motor_A.h"
+ 328              		.file 8 "Generated_Source\\PSoC5/Motor_B.h"
+ 329              		.file 9 "Generated_Source\\PSoC5/core_cm3.h"
+ 330              		.section	.debug_info,"",%progbits
+ 331              	.Ldebug_info0:
+ 332 0000 AC030000 		.4byte	0x3ac
+ 333 0004 0400     		.2byte	0x4
+ 334 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 335 000a 04       		.byte	0x4
+ 336 000b 01       		.uleb128 0x1
+ 337 000c 96000000 		.4byte	.LASF37
+ 338 0010 01       		.byte	0x1
+ 339 0011 67000000 		.4byte	.LASF38
+ 340 0015 CB010000 		.4byte	.LASF39
+ 341 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 342 001d 00000000 		.4byte	0
+ 343 0021 00000000 		.4byte	.Ldebug_line0
+ 344 0025 02       		.uleb128 0x2
+ 345 0026 01       		.byte	0x1
+ 346 0027 06       		.byte	0x6
+ 347 0028 5A020000 		.4byte	.LASF0
+ 348 002c 03       		.uleb128 0x3
+ 349 002d 16000000 		.4byte	.LASF4
+ 350 0031 02       		.byte	0x2
+ 351 0032 1C       		.byte	0x1c
+ 352 0033 37000000 		.4byte	0x37
+ 353 0037 02       		.uleb128 0x2
+ 354 0038 01       		.byte	0x1
+ 355 0039 08       		.byte	0x8
+ 356 003a 37010000 		.4byte	.LASF1
+ 357 003e 02       		.uleb128 0x2
+ 358 003f 02       		.byte	0x2
+ 359 0040 05       		.byte	0x5
+ 360 0041 41020000 		.4byte	.LASF2
+ 361 0045 02       		.uleb128 0x2
+ 362 0046 02       		.byte	0x2
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccmLy2Lk.s 			page 9
+
+
+ 363 0047 07       		.byte	0x7
+ 364 0048 12010000 		.4byte	.LASF3
+ 365 004c 03       		.uleb128 0x3
+ 366 004d 36000000 		.4byte	.LASF5
+ 367 0051 02       		.byte	0x2
+ 368 0052 37       		.byte	0x37
+ 369 0053 57000000 		.4byte	0x57
+ 370 0057 02       		.uleb128 0x2
+ 371 0058 04       		.byte	0x4
+ 372 0059 05       		.byte	0x5
+ 373 005a 51020000 		.4byte	.LASF6
+ 374 005e 02       		.uleb128 0x2
+ 375 005f 04       		.byte	0x4
+ 376 0060 07       		.byte	0x7
+ 377 0061 84000000 		.4byte	.LASF7
+ 378 0065 02       		.uleb128 0x2
+ 379 0066 08       		.byte	0x8
+ 380 0067 05       		.byte	0x5
+ 381 0068 18020000 		.4byte	.LASF8
+ 382 006c 02       		.uleb128 0x2
+ 383 006d 08       		.byte	0x8
+ 384 006e 07       		.byte	0x7
+ 385 006f 94010000 		.4byte	.LASF9
+ 386 0073 04       		.uleb128 0x4
+ 387 0074 04       		.byte	0x4
+ 388 0075 05       		.byte	0x5
+ 389 0076 696E7400 		.ascii	"int\000"
+ 390 007a 02       		.uleb128 0x2
+ 391 007b 04       		.byte	0x4
+ 392 007c 07       		.byte	0x7
+ 393 007d 6C010000 		.4byte	.LASF10
+ 394 0081 03       		.uleb128 0x3
+ 395 0082 AB010000 		.4byte	.LASF11
+ 396 0086 03       		.byte	0x3
+ 397 0087 2A       		.byte	0x2a
+ 398 0088 2C000000 		.4byte	0x2c
+ 399 008c 03       		.uleb128 0x3
+ 400 008d 39020000 		.4byte	.LASF12
+ 401 0091 03       		.byte	0x3
+ 402 0092 41       		.byte	0x41
+ 403 0093 4C000000 		.4byte	0x4c
+ 404 0097 03       		.uleb128 0x3
+ 405 0098 4B020000 		.4byte	.LASF13
+ 406 009c 04       		.byte	0x4
+ 407 009d B3       		.byte	0xb3
+ 408 009e 37000000 		.4byte	0x37
+ 409 00a2 03       		.uleb128 0x3
+ 410 00a3 59010000 		.4byte	.LASF14
+ 411 00a7 04       		.byte	0x4
+ 412 00a8 B4       		.byte	0xb4
+ 413 00a9 45000000 		.4byte	0x45
+ 414 00ad 02       		.uleb128 0x2
+ 415 00ae 04       		.byte	0x4
+ 416 00af 04       		.byte	0x4
+ 417 00b0 61000000 		.4byte	.LASF15
+ 418 00b4 02       		.uleb128 0x2
+ 419 00b5 08       		.byte	0x8
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccmLy2Lk.s 			page 10
+
+
+ 420 00b6 04       		.byte	0x4
+ 421 00b7 48000000 		.4byte	.LASF16
+ 422 00bb 02       		.uleb128 0x2
+ 423 00bc 01       		.byte	0x1
+ 424 00bd 08       		.byte	0x8
+ 425 00be 26020000 		.4byte	.LASF17
+ 426 00c2 02       		.uleb128 0x2
+ 427 00c3 04       		.byte	0x4
+ 428 00c4 07       		.byte	0x7
+ 429 00c5 0F020000 		.4byte	.LASF18
+ 430 00c9 05       		.uleb128 0x5
+ 431 00ca 45010000 		.4byte	.LASF21
+ 432 00ce 01       		.byte	0x1
+ 433 00cf 0F       		.byte	0xf
+ 434 00d0 00000000 		.4byte	.LFB63
+ 435 00d4 10000000 		.4byte	.LFE63-.LFB63
+ 436 00d8 01       		.uleb128 0x1
+ 437 00d9 9C       		.byte	0x9c
+ 438 00da 0F010000 		.4byte	0x10f
+ 439 00de 06       		.uleb128 0x6
+ 440 00df 09020000 		.4byte	.LASF19
+ 441 00e3 01       		.byte	0x1
+ 442 00e4 0F       		.byte	0xf
+ 443 00e5 A2000000 		.4byte	0xa2
+ 444 00e9 00000000 		.4byte	.LLST0
+ 445 00ed 06       		.uleb128 0x6
+ 446 00ee 59000000 		.4byte	.LASF20
+ 447 00f2 01       		.byte	0x1
+ 448 00f3 0F       		.byte	0xf
+ 449 00f4 81000000 		.4byte	0x81
+ 450 00f8 3A000000 		.4byte	.LLST1
+ 451 00fc 07       		.uleb128 0x7
+ 452 00fd 08000000 		.4byte	.LVL1
+ 453 0101 59030000 		.4byte	0x359
+ 454 0105 07       		.uleb128 0x7
+ 455 0106 0E000000 		.4byte	.LVL3
+ 456 010a 6A030000 		.4byte	0x36a
+ 457 010e 00       		.byte	0
+ 458 010f 05       		.uleb128 0x5
+ 459 0110 29000000 		.4byte	.LASF22
+ 460 0114 01       		.byte	0x1
+ 461 0115 1A       		.byte	0x1a
+ 462 0116 00000000 		.4byte	.LFB64
+ 463 011a 26000000 		.4byte	.LFE64-.LFB64
+ 464 011e 01       		.uleb128 0x1
+ 465 011f 9C       		.byte	0x9c
+ 466 0120 76010000 		.4byte	0x176
+ 467 0124 06       		.uleb128 0x6
+ 468 0125 4F000000 		.4byte	.LASF23
+ 469 0129 01       		.byte	0x1
+ 470 012a 1A       		.byte	0x1a
+ 471 012b 81000000 		.4byte	0x81
+ 472 012f 74000000 		.4byte	.LLST2
+ 473 0133 06       		.uleb128 0x6
+ 474 0134 59000000 		.4byte	.LASF20
+ 475 0138 01       		.byte	0x1
+ 476 0139 1A       		.byte	0x1a
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccmLy2Lk.s 			page 11
+
+
+ 477 013a 81000000 		.4byte	0x81
+ 478 013e AE000000 		.4byte	.LLST3
+ 479 0142 08       		.uleb128 0x8
+ 480 0143 79010000 		.4byte	.LASF25
+ 481 0147 01       		.byte	0x1
+ 482 0148 1C       		.byte	0x1c
+ 483 0149 81000000 		.4byte	0x81
+ 484 014d E8000000 		.4byte	.LLST4
+ 485 0151 07       		.uleb128 0x7
+ 486 0152 0A000000 		.4byte	.LVL5
+ 487 0156 7B030000 		.4byte	0x37b
+ 488 015a 07       		.uleb128 0x7
+ 489 015b 14000000 		.4byte	.LVL8
+ 490 015f 86030000 		.4byte	0x386
+ 491 0163 07       		.uleb128 0x7
+ 492 0164 1A000000 		.4byte	.LVL10
+ 493 0168 97030000 		.4byte	0x397
+ 494 016c 07       		.uleb128 0x7
+ 495 016d 24000000 		.4byte	.LVL13
+ 496 0171 A2030000 		.4byte	0x3a2
+ 497 0175 00       		.byte	0
+ 498 0176 05       		.uleb128 0x5
+ 499 0177 60010000 		.4byte	.LASF24
+ 500 017b 01       		.byte	0x1
+ 501 017c 2D       		.byte	0x2d
+ 502 017d 00000000 		.4byte	.LFB65
+ 503 0181 18000000 		.4byte	.LFE65-.LFB65
+ 504 0185 01       		.uleb128 0x1
+ 505 0186 9C       		.byte	0x9c
+ 506 0187 CB010000 		.4byte	0x1cb
+ 507 018b 06       		.uleb128 0x6
+ 508 018c 4F000000 		.4byte	.LASF23
+ 509 0190 01       		.byte	0x1
+ 510 0191 2D       		.byte	0x2d
+ 511 0192 81000000 		.4byte	0x81
+ 512 0196 26010000 		.4byte	.LLST5
+ 513 019a 06       		.uleb128 0x6
+ 514 019b 59000000 		.4byte	.LASF20
+ 515 019f 01       		.byte	0x1
+ 516 01a0 2D       		.byte	0x2d
+ 517 01a1 81000000 		.4byte	0x81
+ 518 01a5 60010000 		.4byte	.LLST6
+ 519 01a9 08       		.uleb128 0x8
+ 520 01aa 79010000 		.4byte	.LASF25
+ 521 01ae 01       		.byte	0x1
+ 522 01af 2F       		.byte	0x2f
+ 523 01b0 81000000 		.4byte	0x81
+ 524 01b4 9A010000 		.4byte	.LLST7
+ 525 01b8 07       		.uleb128 0x7
+ 526 01b9 0C000000 		.4byte	.LVL18
+ 527 01bd 86030000 		.4byte	0x386
+ 528 01c1 07       		.uleb128 0x7
+ 529 01c2 16000000 		.4byte	.LVL21
+ 530 01c6 A2030000 		.4byte	0x3a2
+ 531 01ca 00       		.byte	0
+ 532 01cb 09       		.uleb128 0x9
+ 533 01cc B3010000 		.4byte	.LASF26
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccmLy2Lk.s 			page 12
+
+
+ 534 01d0 01       		.byte	0x1
+ 535 01d1 3D       		.byte	0x3d
+ 536 01d2 00000000 		.4byte	.LFB66
+ 537 01d6 14000000 		.4byte	.LFE66-.LFB66
+ 538 01da 01       		.uleb128 0x1
+ 539 01db 9C       		.byte	0x9c
+ 540 01dc 0D020000 		.4byte	0x20d
+ 541 01e0 0A       		.uleb128 0xa
+ 542 01e1 0A000000 		.4byte	.LVL22
+ 543 01e5 76010000 		.4byte	0x176
+ 544 01e9 F8010000 		.4byte	0x1f8
+ 545 01ed 0B       		.uleb128 0xb
+ 546 01ee 01       		.uleb128 0x1
+ 547 01ef 51       		.byte	0x51
+ 548 01f0 01       		.uleb128 0x1
+ 549 01f1 30       		.byte	0x30
+ 550 01f2 0B       		.uleb128 0xb
+ 551 01f3 01       		.uleb128 0x1
+ 552 01f4 50       		.byte	0x50
+ 553 01f5 01       		.uleb128 0x1
+ 554 01f6 34       		.byte	0x34
+ 555 01f7 00       		.byte	0
+ 556 01f8 0C       		.uleb128 0xc
+ 557 01f9 12000000 		.4byte	.LVL23
+ 558 01fd 76010000 		.4byte	0x176
+ 559 0201 0B       		.uleb128 0xb
+ 560 0202 01       		.uleb128 0x1
+ 561 0203 51       		.byte	0x51
+ 562 0204 01       		.uleb128 0x1
+ 563 0205 31       		.byte	0x31
+ 564 0206 0B       		.uleb128 0xb
+ 565 0207 01       		.uleb128 0x1
+ 566 0208 50       		.byte	0x50
+ 567 0209 01       		.uleb128 0x1
+ 568 020a 34       		.byte	0x34
+ 569 020b 00       		.byte	0
+ 570 020c 00       		.byte	0
+ 571 020d 09       		.uleb128 0x9
+ 572 020e 4E010000 		.4byte	.LASF27
+ 573 0212 01       		.byte	0x1
+ 574 0213 42       		.byte	0x42
+ 575 0214 00000000 		.4byte	.LFB67
+ 576 0218 14000000 		.4byte	.LFE67-.LFB67
+ 577 021c 01       		.uleb128 0x1
+ 578 021d 9C       		.byte	0x9c
+ 579 021e 4F020000 		.4byte	0x24f
+ 580 0222 0A       		.uleb128 0xa
+ 581 0223 0A000000 		.4byte	.LVL24
+ 582 0227 76010000 		.4byte	0x176
+ 583 022b 3A020000 		.4byte	0x23a
+ 584 022f 0B       		.uleb128 0xb
+ 585 0230 01       		.uleb128 0x1
+ 586 0231 51       		.byte	0x51
+ 587 0232 01       		.uleb128 0x1
+ 588 0233 30       		.byte	0x30
+ 589 0234 0B       		.uleb128 0xb
+ 590 0235 01       		.uleb128 0x1
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccmLy2Lk.s 			page 13
+
+
+ 591 0236 50       		.byte	0x50
+ 592 0237 01       		.uleb128 0x1
+ 593 0238 32       		.byte	0x32
+ 594 0239 00       		.byte	0
+ 595 023a 0C       		.uleb128 0xc
+ 596 023b 12000000 		.4byte	.LVL25
+ 597 023f 76010000 		.4byte	0x176
+ 598 0243 0B       		.uleb128 0xb
+ 599 0244 01       		.uleb128 0x1
+ 600 0245 51       		.byte	0x51
+ 601 0246 01       		.uleb128 0x1
+ 602 0247 31       		.byte	0x31
+ 603 0248 0B       		.uleb128 0xb
+ 604 0249 01       		.uleb128 0x1
+ 605 024a 50       		.byte	0x50
+ 606 024b 01       		.uleb128 0x1
+ 607 024c 32       		.byte	0x32
+ 608 024d 00       		.byte	0
+ 609 024e 00       		.byte	0
+ 610 024f 09       		.uleb128 0x9
+ 611 0250 02020000 		.4byte	.LASF28
+ 612 0254 01       		.byte	0x1
+ 613 0255 47       		.byte	0x47
+ 614 0256 00000000 		.4byte	.LFB68
+ 615 025a 14000000 		.4byte	.LFE68-.LFB68
+ 616 025e 01       		.uleb128 0x1
+ 617 025f 9C       		.byte	0x9c
+ 618 0260 91020000 		.4byte	0x291
+ 619 0264 0A       		.uleb128 0xa
+ 620 0265 0A000000 		.4byte	.LVL26
+ 621 0269 76010000 		.4byte	0x176
+ 622 026d 7C020000 		.4byte	0x27c
+ 623 0271 0B       		.uleb128 0xb
+ 624 0272 01       		.uleb128 0x1
+ 625 0273 51       		.byte	0x51
+ 626 0274 01       		.uleb128 0x1
+ 627 0275 30       		.byte	0x30
+ 628 0276 0B       		.uleb128 0xb
+ 629 0277 01       		.uleb128 0x1
+ 630 0278 50       		.byte	0x50
+ 631 0279 01       		.uleb128 0x1
+ 632 027a 32       		.byte	0x32
+ 633 027b 00       		.byte	0
+ 634 027c 0C       		.uleb128 0xc
+ 635 027d 12000000 		.4byte	.LVL27
+ 636 0281 76010000 		.4byte	0x176
+ 637 0285 0B       		.uleb128 0xb
+ 638 0286 01       		.uleb128 0x1
+ 639 0287 51       		.byte	0x51
+ 640 0288 01       		.uleb128 0x1
+ 641 0289 31       		.byte	0x31
+ 642 028a 0B       		.uleb128 0xb
+ 643 028b 01       		.uleb128 0x1
+ 644 028c 50       		.byte	0x50
+ 645 028d 01       		.uleb128 0x1
+ 646 028e 34       		.byte	0x34
+ 647 028f 00       		.byte	0
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccmLy2Lk.s 			page 14
+
+
+ 648 0290 00       		.byte	0
+ 649 0291 09       		.uleb128 0x9
+ 650 0292 40000000 		.4byte	.LASF29
+ 651 0296 01       		.byte	0x1
+ 652 0297 4C       		.byte	0x4c
+ 653 0298 00000000 		.4byte	.LFB69
+ 654 029c 14000000 		.4byte	.LFE69-.LFB69
+ 655 02a0 01       		.uleb128 0x1
+ 656 02a1 9C       		.byte	0x9c
+ 657 02a2 D3020000 		.4byte	0x2d3
+ 658 02a6 0A       		.uleb128 0xa
+ 659 02a7 0A000000 		.4byte	.LVL28
+ 660 02ab 76010000 		.4byte	0x176
+ 661 02af BE020000 		.4byte	0x2be
+ 662 02b3 0B       		.uleb128 0xb
+ 663 02b4 01       		.uleb128 0x1
+ 664 02b5 51       		.byte	0x51
+ 665 02b6 01       		.uleb128 0x1
+ 666 02b7 31       		.byte	0x31
+ 667 02b8 0B       		.uleb128 0xb
+ 668 02b9 01       		.uleb128 0x1
+ 669 02ba 50       		.byte	0x50
+ 670 02bb 01       		.uleb128 0x1
+ 671 02bc 32       		.byte	0x32
+ 672 02bd 00       		.byte	0
+ 673 02be 0C       		.uleb128 0xc
+ 674 02bf 12000000 		.4byte	.LVL29
+ 675 02c3 76010000 		.4byte	0x176
+ 676 02c7 0B       		.uleb128 0xb
+ 677 02c8 01       		.uleb128 0x1
+ 678 02c9 51       		.byte	0x51
+ 679 02ca 01       		.uleb128 0x1
+ 680 02cb 30       		.byte	0x30
+ 681 02cc 0B       		.uleb128 0xb
+ 682 02cd 01       		.uleb128 0x1
+ 683 02ce 50       		.byte	0x50
+ 684 02cf 01       		.uleb128 0x1
+ 685 02d0 34       		.byte	0x34
+ 686 02d1 00       		.byte	0
+ 687 02d2 00       		.byte	0
+ 688 02d3 09       		.uleb128 0x9
+ 689 02d4 20000000 		.4byte	.LASF30
+ 690 02d8 01       		.byte	0x1
+ 691 02d9 51       		.byte	0x51
+ 692 02da 00000000 		.4byte	.LFB70
+ 693 02de 10000000 		.4byte	.LFE70-.LFB70
+ 694 02e2 01       		.uleb128 0x1
+ 695 02e3 9C       		.byte	0x9c
+ 696 02e4 0B030000 		.4byte	0x30b
+ 697 02e8 0A       		.uleb128 0xa
+ 698 02e9 08000000 		.4byte	.LVL30
+ 699 02ed 86030000 		.4byte	0x386
+ 700 02f1 FB020000 		.4byte	0x2fb
+ 701 02f5 0B       		.uleb128 0xb
+ 702 02f6 01       		.uleb128 0x1
+ 703 02f7 50       		.byte	0x50
+ 704 02f8 01       		.uleb128 0x1
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccmLy2Lk.s 			page 15
+
+
+ 705 02f9 30       		.byte	0x30
+ 706 02fa 00       		.byte	0
+ 707 02fb 0C       		.uleb128 0xc
+ 708 02fc 0E000000 		.4byte	.LVL31
+ 709 0300 A2030000 		.4byte	0x3a2
+ 710 0304 0B       		.uleb128 0xb
+ 711 0305 01       		.uleb128 0x1
+ 712 0306 50       		.byte	0x50
+ 713 0307 01       		.uleb128 0x1
+ 714 0308 30       		.byte	0x30
+ 715 0309 00       		.byte	0
+ 716 030a 00       		.byte	0
+ 717 030b 05       		.uleb128 0x5
+ 718 030c 25010000 		.4byte	.LASF31
+ 719 0310 01       		.byte	0x1
+ 720 0311 56       		.byte	0x56
+ 721 0312 00000000 		.4byte	.LFB71
+ 722 0316 12000000 		.4byte	.LFE71-.LFB71
+ 723 031a 01       		.uleb128 0x1
+ 724 031b 9C       		.byte	0x9c
+ 725 031c 48030000 		.4byte	0x348
+ 726 0320 06       		.uleb128 0x6
+ 727 0321 59000000 		.4byte	.LASF20
+ 728 0325 01       		.byte	0x1
+ 729 0326 56       		.byte	0x56
+ 730 0327 81000000 		.4byte	0x81
+ 731 032b CC010000 		.4byte	.LLST8
+ 732 032f 07       		.uleb128 0x7
+ 733 0330 08000000 		.4byte	.LVL33
+ 734 0334 86030000 		.4byte	0x386
+ 735 0338 0C       		.uleb128 0xc
+ 736 0339 10000000 		.4byte	.LVL36
+ 737 033d A2030000 		.4byte	0x3a2
+ 738 0341 0B       		.uleb128 0xb
+ 739 0342 01       		.uleb128 0x1
+ 740 0343 50       		.byte	0x50
+ 741 0344 01       		.uleb128 0x1
+ 742 0345 30       		.byte	0x30
+ 743 0346 00       		.byte	0
+ 744 0347 00       		.byte	0
+ 745 0348 0D       		.uleb128 0xd
+ 746 0349 2A010000 		.4byte	.LASF40
+ 747 034d 09       		.byte	0x9
+ 748 034e 2A06     		.2byte	0x62a
+ 749 0350 54030000 		.4byte	0x354
+ 750 0354 0E       		.uleb128 0xe
+ 751 0355 8C000000 		.4byte	0x8c
+ 752 0359 0F       		.uleb128 0xf
+ 753 035a 7E010000 		.4byte	.LASF32
+ 754 035e 05       		.byte	0x5
+ 755 035f C3       		.byte	0xc3
+ 756 0360 6A030000 		.4byte	0x36a
+ 757 0364 10       		.uleb128 0x10
+ 758 0365 A2000000 		.4byte	0xa2
+ 759 0369 00       		.byte	0
+ 760 036a 0F       		.uleb128 0xf
+ 761 036b 00000000 		.4byte	.LASF33
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccmLy2Lk.s 			page 16
+
+
+ 762 036f 06       		.byte	0x6
+ 763 0370 C3       		.byte	0xc3
+ 764 0371 7B030000 		.4byte	0x37b
+ 765 0375 10       		.uleb128 0x10
+ 766 0376 A2000000 		.4byte	0xa2
+ 767 037a 00       		.byte	0
+ 768 037b 11       		.uleb128 0x11
+ 769 037c 66020000 		.4byte	.LASF35
+ 770 0380 07       		.byte	0x7
+ 771 0381 28       		.byte	0x28
+ 772 0382 97000000 		.4byte	0x97
+ 773 0386 0F       		.uleb128 0xf
+ 774 0387 BD010000 		.4byte	.LASF34
+ 775 038b 07       		.byte	0x7
+ 776 038c 27       		.byte	0x27
+ 777 038d 97030000 		.4byte	0x397
+ 778 0391 10       		.uleb128 0x10
+ 779 0392 97000000 		.4byte	0x97
+ 780 0396 00       		.byte	0
+ 781 0397 11       		.uleb128 0x11
+ 782 0398 77000000 		.4byte	.LASF36
+ 783 039c 08       		.byte	0x8
+ 784 039d 28       		.byte	0x28
+ 785 039e 97000000 		.4byte	0x97
+ 786 03a2 12       		.uleb128 0x12
+ 787 03a3 2B020000 		.4byte	.LASF41
+ 788 03a7 08       		.byte	0x8
+ 789 03a8 27       		.byte	0x27
+ 790 03a9 10       		.uleb128 0x10
+ 791 03aa 97000000 		.4byte	0x97
+ 792 03ae 00       		.byte	0
+ 793 03af 00       		.byte	0
+ 794              		.section	.debug_abbrev,"",%progbits
+ 795              	.Ldebug_abbrev0:
+ 796 0000 01       		.uleb128 0x1
+ 797 0001 11       		.uleb128 0x11
+ 798 0002 01       		.byte	0x1
+ 799 0003 25       		.uleb128 0x25
+ 800 0004 0E       		.uleb128 0xe
+ 801 0005 13       		.uleb128 0x13
+ 802 0006 0B       		.uleb128 0xb
+ 803 0007 03       		.uleb128 0x3
+ 804 0008 0E       		.uleb128 0xe
+ 805 0009 1B       		.uleb128 0x1b
+ 806 000a 0E       		.uleb128 0xe
+ 807 000b 55       		.uleb128 0x55
+ 808 000c 17       		.uleb128 0x17
+ 809 000d 11       		.uleb128 0x11
+ 810 000e 01       		.uleb128 0x1
+ 811 000f 10       		.uleb128 0x10
+ 812 0010 17       		.uleb128 0x17
+ 813 0011 00       		.byte	0
+ 814 0012 00       		.byte	0
+ 815 0013 02       		.uleb128 0x2
+ 816 0014 24       		.uleb128 0x24
+ 817 0015 00       		.byte	0
+ 818 0016 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccmLy2Lk.s 			page 17
+
+
+ 819 0017 0B       		.uleb128 0xb
+ 820 0018 3E       		.uleb128 0x3e
+ 821 0019 0B       		.uleb128 0xb
+ 822 001a 03       		.uleb128 0x3
+ 823 001b 0E       		.uleb128 0xe
+ 824 001c 00       		.byte	0
+ 825 001d 00       		.byte	0
+ 826 001e 03       		.uleb128 0x3
+ 827 001f 16       		.uleb128 0x16
+ 828 0020 00       		.byte	0
+ 829 0021 03       		.uleb128 0x3
+ 830 0022 0E       		.uleb128 0xe
+ 831 0023 3A       		.uleb128 0x3a
+ 832 0024 0B       		.uleb128 0xb
+ 833 0025 3B       		.uleb128 0x3b
+ 834 0026 0B       		.uleb128 0xb
+ 835 0027 49       		.uleb128 0x49
+ 836 0028 13       		.uleb128 0x13
+ 837 0029 00       		.byte	0
+ 838 002a 00       		.byte	0
+ 839 002b 04       		.uleb128 0x4
+ 840 002c 24       		.uleb128 0x24
+ 841 002d 00       		.byte	0
+ 842 002e 0B       		.uleb128 0xb
+ 843 002f 0B       		.uleb128 0xb
+ 844 0030 3E       		.uleb128 0x3e
+ 845 0031 0B       		.uleb128 0xb
+ 846 0032 03       		.uleb128 0x3
+ 847 0033 08       		.uleb128 0x8
+ 848 0034 00       		.byte	0
+ 849 0035 00       		.byte	0
+ 850 0036 05       		.uleb128 0x5
+ 851 0037 2E       		.uleb128 0x2e
+ 852 0038 01       		.byte	0x1
+ 853 0039 3F       		.uleb128 0x3f
+ 854 003a 19       		.uleb128 0x19
+ 855 003b 03       		.uleb128 0x3
+ 856 003c 0E       		.uleb128 0xe
+ 857 003d 3A       		.uleb128 0x3a
+ 858 003e 0B       		.uleb128 0xb
+ 859 003f 3B       		.uleb128 0x3b
+ 860 0040 0B       		.uleb128 0xb
+ 861 0041 27       		.uleb128 0x27
+ 862 0042 19       		.uleb128 0x19
+ 863 0043 11       		.uleb128 0x11
+ 864 0044 01       		.uleb128 0x1
+ 865 0045 12       		.uleb128 0x12
+ 866 0046 06       		.uleb128 0x6
+ 867 0047 40       		.uleb128 0x40
+ 868 0048 18       		.uleb128 0x18
+ 869 0049 9742     		.uleb128 0x2117
+ 870 004b 19       		.uleb128 0x19
+ 871 004c 01       		.uleb128 0x1
+ 872 004d 13       		.uleb128 0x13
+ 873 004e 00       		.byte	0
+ 874 004f 00       		.byte	0
+ 875 0050 06       		.uleb128 0x6
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccmLy2Lk.s 			page 18
+
+
+ 876 0051 05       		.uleb128 0x5
+ 877 0052 00       		.byte	0
+ 878 0053 03       		.uleb128 0x3
+ 879 0054 0E       		.uleb128 0xe
+ 880 0055 3A       		.uleb128 0x3a
+ 881 0056 0B       		.uleb128 0xb
+ 882 0057 3B       		.uleb128 0x3b
+ 883 0058 0B       		.uleb128 0xb
+ 884 0059 49       		.uleb128 0x49
+ 885 005a 13       		.uleb128 0x13
+ 886 005b 02       		.uleb128 0x2
+ 887 005c 17       		.uleb128 0x17
+ 888 005d 00       		.byte	0
+ 889 005e 00       		.byte	0
+ 890 005f 07       		.uleb128 0x7
+ 891 0060 898201   		.uleb128 0x4109
+ 892 0063 00       		.byte	0
+ 893 0064 11       		.uleb128 0x11
+ 894 0065 01       		.uleb128 0x1
+ 895 0066 31       		.uleb128 0x31
+ 896 0067 13       		.uleb128 0x13
+ 897 0068 00       		.byte	0
+ 898 0069 00       		.byte	0
+ 899 006a 08       		.uleb128 0x8
+ 900 006b 34       		.uleb128 0x34
+ 901 006c 00       		.byte	0
+ 902 006d 03       		.uleb128 0x3
+ 903 006e 0E       		.uleb128 0xe
+ 904 006f 3A       		.uleb128 0x3a
+ 905 0070 0B       		.uleb128 0xb
+ 906 0071 3B       		.uleb128 0x3b
+ 907 0072 0B       		.uleb128 0xb
+ 908 0073 49       		.uleb128 0x49
+ 909 0074 13       		.uleb128 0x13
+ 910 0075 02       		.uleb128 0x2
+ 911 0076 17       		.uleb128 0x17
+ 912 0077 00       		.byte	0
+ 913 0078 00       		.byte	0
+ 914 0079 09       		.uleb128 0x9
+ 915 007a 2E       		.uleb128 0x2e
+ 916 007b 01       		.byte	0x1
+ 917 007c 3F       		.uleb128 0x3f
+ 918 007d 19       		.uleb128 0x19
+ 919 007e 03       		.uleb128 0x3
+ 920 007f 0E       		.uleb128 0xe
+ 921 0080 3A       		.uleb128 0x3a
+ 922 0081 0B       		.uleb128 0xb
+ 923 0082 3B       		.uleb128 0x3b
+ 924 0083 0B       		.uleb128 0xb
+ 925 0084 11       		.uleb128 0x11
+ 926 0085 01       		.uleb128 0x1
+ 927 0086 12       		.uleb128 0x12
+ 928 0087 06       		.uleb128 0x6
+ 929 0088 40       		.uleb128 0x40
+ 930 0089 18       		.uleb128 0x18
+ 931 008a 9742     		.uleb128 0x2117
+ 932 008c 19       		.uleb128 0x19
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccmLy2Lk.s 			page 19
+
+
+ 933 008d 01       		.uleb128 0x1
+ 934 008e 13       		.uleb128 0x13
+ 935 008f 00       		.byte	0
+ 936 0090 00       		.byte	0
+ 937 0091 0A       		.uleb128 0xa
+ 938 0092 898201   		.uleb128 0x4109
+ 939 0095 01       		.byte	0x1
+ 940 0096 11       		.uleb128 0x11
+ 941 0097 01       		.uleb128 0x1
+ 942 0098 31       		.uleb128 0x31
+ 943 0099 13       		.uleb128 0x13
+ 944 009a 01       		.uleb128 0x1
+ 945 009b 13       		.uleb128 0x13
+ 946 009c 00       		.byte	0
+ 947 009d 00       		.byte	0
+ 948 009e 0B       		.uleb128 0xb
+ 949 009f 8A8201   		.uleb128 0x410a
+ 950 00a2 00       		.byte	0
+ 951 00a3 02       		.uleb128 0x2
+ 952 00a4 18       		.uleb128 0x18
+ 953 00a5 9142     		.uleb128 0x2111
+ 954 00a7 18       		.uleb128 0x18
+ 955 00a8 00       		.byte	0
+ 956 00a9 00       		.byte	0
+ 957 00aa 0C       		.uleb128 0xc
+ 958 00ab 898201   		.uleb128 0x4109
+ 959 00ae 01       		.byte	0x1
+ 960 00af 11       		.uleb128 0x11
+ 961 00b0 01       		.uleb128 0x1
+ 962 00b1 31       		.uleb128 0x31
+ 963 00b2 13       		.uleb128 0x13
+ 964 00b3 00       		.byte	0
+ 965 00b4 00       		.byte	0
+ 966 00b5 0D       		.uleb128 0xd
+ 967 00b6 34       		.uleb128 0x34
+ 968 00b7 00       		.byte	0
+ 969 00b8 03       		.uleb128 0x3
+ 970 00b9 0E       		.uleb128 0xe
+ 971 00ba 3A       		.uleb128 0x3a
+ 972 00bb 0B       		.uleb128 0xb
+ 973 00bc 3B       		.uleb128 0x3b
+ 974 00bd 05       		.uleb128 0x5
+ 975 00be 49       		.uleb128 0x49
+ 976 00bf 13       		.uleb128 0x13
+ 977 00c0 3F       		.uleb128 0x3f
+ 978 00c1 19       		.uleb128 0x19
+ 979 00c2 3C       		.uleb128 0x3c
+ 980 00c3 19       		.uleb128 0x19
+ 981 00c4 00       		.byte	0
+ 982 00c5 00       		.byte	0
+ 983 00c6 0E       		.uleb128 0xe
+ 984 00c7 35       		.uleb128 0x35
+ 985 00c8 00       		.byte	0
+ 986 00c9 49       		.uleb128 0x49
+ 987 00ca 13       		.uleb128 0x13
+ 988 00cb 00       		.byte	0
+ 989 00cc 00       		.byte	0
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccmLy2Lk.s 			page 20
+
+
+ 990 00cd 0F       		.uleb128 0xf
+ 991 00ce 2E       		.uleb128 0x2e
+ 992 00cf 01       		.byte	0x1
+ 993 00d0 3F       		.uleb128 0x3f
+ 994 00d1 19       		.uleb128 0x19
+ 995 00d2 03       		.uleb128 0x3
+ 996 00d3 0E       		.uleb128 0xe
+ 997 00d4 3A       		.uleb128 0x3a
+ 998 00d5 0B       		.uleb128 0xb
+ 999 00d6 3B       		.uleb128 0x3b
+ 1000 00d7 0B       		.uleb128 0xb
+ 1001 00d8 27       		.uleb128 0x27
+ 1002 00d9 19       		.uleb128 0x19
+ 1003 00da 3C       		.uleb128 0x3c
+ 1004 00db 19       		.uleb128 0x19
+ 1005 00dc 01       		.uleb128 0x1
+ 1006 00dd 13       		.uleb128 0x13
+ 1007 00de 00       		.byte	0
+ 1008 00df 00       		.byte	0
+ 1009 00e0 10       		.uleb128 0x10
+ 1010 00e1 05       		.uleb128 0x5
+ 1011 00e2 00       		.byte	0
+ 1012 00e3 49       		.uleb128 0x49
+ 1013 00e4 13       		.uleb128 0x13
+ 1014 00e5 00       		.byte	0
+ 1015 00e6 00       		.byte	0
+ 1016 00e7 11       		.uleb128 0x11
+ 1017 00e8 2E       		.uleb128 0x2e
+ 1018 00e9 00       		.byte	0
+ 1019 00ea 3F       		.uleb128 0x3f
+ 1020 00eb 19       		.uleb128 0x19
+ 1021 00ec 03       		.uleb128 0x3
+ 1022 00ed 0E       		.uleb128 0xe
+ 1023 00ee 3A       		.uleb128 0x3a
+ 1024 00ef 0B       		.uleb128 0xb
+ 1025 00f0 3B       		.uleb128 0x3b
+ 1026 00f1 0B       		.uleb128 0xb
+ 1027 00f2 27       		.uleb128 0x27
+ 1028 00f3 19       		.uleb128 0x19
+ 1029 00f4 49       		.uleb128 0x49
+ 1030 00f5 13       		.uleb128 0x13
+ 1031 00f6 3C       		.uleb128 0x3c
+ 1032 00f7 19       		.uleb128 0x19
+ 1033 00f8 00       		.byte	0
+ 1034 00f9 00       		.byte	0
+ 1035 00fa 12       		.uleb128 0x12
+ 1036 00fb 2E       		.uleb128 0x2e
+ 1037 00fc 01       		.byte	0x1
+ 1038 00fd 3F       		.uleb128 0x3f
+ 1039 00fe 19       		.uleb128 0x19
+ 1040 00ff 03       		.uleb128 0x3
+ 1041 0100 0E       		.uleb128 0xe
+ 1042 0101 3A       		.uleb128 0x3a
+ 1043 0102 0B       		.uleb128 0xb
+ 1044 0103 3B       		.uleb128 0x3b
+ 1045 0104 0B       		.uleb128 0xb
+ 1046 0105 27       		.uleb128 0x27
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccmLy2Lk.s 			page 21
+
+
+ 1047 0106 19       		.uleb128 0x19
+ 1048 0107 3C       		.uleb128 0x3c
+ 1049 0108 19       		.uleb128 0x19
+ 1050 0109 00       		.byte	0
+ 1051 010a 00       		.byte	0
+ 1052 010b 00       		.byte	0
+ 1053              		.section	.debug_loc,"",%progbits
+ 1054              	.Ldebug_loc0:
+ 1055              	.LLST0:
+ 1056 0000 00000000 		.4byte	.LVL0
+ 1057 0004 07000000 		.4byte	.LVL1-1
+ 1058 0008 0100     		.2byte	0x1
+ 1059 000a 50       		.byte	0x50
+ 1060 000b 07000000 		.4byte	.LVL1-1
+ 1061 000f 0A000000 		.4byte	.LVL2
+ 1062 0013 0400     		.2byte	0x4
+ 1063 0015 F3       		.byte	0xf3
+ 1064 0016 01       		.uleb128 0x1
+ 1065 0017 50       		.byte	0x50
+ 1066 0018 9F       		.byte	0x9f
+ 1067 0019 0A000000 		.4byte	.LVL2
+ 1068 001d 0D000000 		.4byte	.LVL3-1
+ 1069 0021 0100     		.2byte	0x1
+ 1070 0023 50       		.byte	0x50
+ 1071 0024 0D000000 		.4byte	.LVL3-1
+ 1072 0028 10000000 		.4byte	.LFE63
+ 1073 002c 0400     		.2byte	0x4
+ 1074 002e F3       		.byte	0xf3
+ 1075 002f 01       		.uleb128 0x1
+ 1076 0030 50       		.byte	0x50
+ 1077 0031 9F       		.byte	0x9f
+ 1078 0032 00000000 		.4byte	0
+ 1079 0036 00000000 		.4byte	0
+ 1080              	.LLST1:
+ 1081 003a 00000000 		.4byte	.LVL0
+ 1082 003e 07000000 		.4byte	.LVL1-1
+ 1083 0042 0100     		.2byte	0x1
+ 1084 0044 51       		.byte	0x51
+ 1085 0045 07000000 		.4byte	.LVL1-1
+ 1086 0049 0A000000 		.4byte	.LVL2
+ 1087 004d 0400     		.2byte	0x4
+ 1088 004f F3       		.byte	0xf3
+ 1089 0050 01       		.uleb128 0x1
+ 1090 0051 51       		.byte	0x51
+ 1091 0052 9F       		.byte	0x9f
+ 1092 0053 0A000000 		.4byte	.LVL2
+ 1093 0057 0D000000 		.4byte	.LVL3-1
+ 1094 005b 0100     		.2byte	0x1
+ 1095 005d 51       		.byte	0x51
+ 1096 005e 0D000000 		.4byte	.LVL3-1
+ 1097 0062 10000000 		.4byte	.LFE63
+ 1098 0066 0400     		.2byte	0x4
+ 1099 0068 F3       		.byte	0xf3
+ 1100 0069 01       		.uleb128 0x1
+ 1101 006a 51       		.byte	0x51
+ 1102 006b 9F       		.byte	0x9f
+ 1103 006c 00000000 		.4byte	0
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccmLy2Lk.s 			page 22
+
+
+ 1104 0070 00000000 		.4byte	0
+ 1105              	.LLST2:
+ 1106 0074 00000000 		.4byte	.LVL4
+ 1107 0078 09000000 		.4byte	.LVL5-1
+ 1108 007c 0100     		.2byte	0x1
+ 1109 007e 50       		.byte	0x50
+ 1110 007f 09000000 		.4byte	.LVL5-1
+ 1111 0083 16000000 		.4byte	.LVL9
+ 1112 0087 0400     		.2byte	0x4
+ 1113 0089 F3       		.byte	0xf3
+ 1114 008a 01       		.uleb128 0x1
+ 1115 008b 50       		.byte	0x50
+ 1116 008c 9F       		.byte	0x9f
+ 1117 008d 16000000 		.4byte	.LVL9
+ 1118 0091 19000000 		.4byte	.LVL10-1
+ 1119 0095 0100     		.2byte	0x1
+ 1120 0097 50       		.byte	0x50
+ 1121 0098 19000000 		.4byte	.LVL10-1
+ 1122 009c 26000000 		.4byte	.LFE64
+ 1123 00a0 0400     		.2byte	0x4
+ 1124 00a2 F3       		.byte	0xf3
+ 1125 00a3 01       		.uleb128 0x1
+ 1126 00a4 50       		.byte	0x50
+ 1127 00a5 9F       		.byte	0x9f
+ 1128 00a6 00000000 		.4byte	0
+ 1129 00aa 00000000 		.4byte	0
+ 1130              	.LLST3:
+ 1131 00ae 00000000 		.4byte	.LVL4
+ 1132 00b2 09000000 		.4byte	.LVL5-1
+ 1133 00b6 0100     		.2byte	0x1
+ 1134 00b8 51       		.byte	0x51
+ 1135 00b9 09000000 		.4byte	.LVL5-1
+ 1136 00bd 16000000 		.4byte	.LVL9
+ 1137 00c1 0400     		.2byte	0x4
+ 1138 00c3 F3       		.byte	0xf3
+ 1139 00c4 01       		.uleb128 0x1
+ 1140 00c5 51       		.byte	0x51
+ 1141 00c6 9F       		.byte	0x9f
+ 1142 00c7 16000000 		.4byte	.LVL9
+ 1143 00cb 19000000 		.4byte	.LVL10-1
+ 1144 00cf 0100     		.2byte	0x1
+ 1145 00d1 51       		.byte	0x51
+ 1146 00d2 19000000 		.4byte	.LVL10-1
+ 1147 00d6 26000000 		.4byte	.LFE64
+ 1148 00da 0400     		.2byte	0x4
+ 1149 00dc F3       		.byte	0xf3
+ 1150 00dd 01       		.uleb128 0x1
+ 1151 00de 51       		.byte	0x51
+ 1152 00df 9F       		.byte	0x9f
+ 1153 00e0 00000000 		.4byte	0
+ 1154 00e4 00000000 		.4byte	0
+ 1155              	.LLST4:
+ 1156 00e8 0A000000 		.4byte	.LVL5
+ 1157 00ec 0E000000 		.4byte	.LVL6
+ 1158 00f0 0100     		.2byte	0x1
+ 1159 00f2 50       		.byte	0x50
+ 1160 00f3 0E000000 		.4byte	.LVL6
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccmLy2Lk.s 			page 23
+
+
+ 1161 00f7 10000000 		.4byte	.LVL7
+ 1162 00fb 0600     		.2byte	0x6
+ 1163 00fd 70       		.byte	0x70
+ 1164 00fe 00       		.sleb128 0
+ 1165 00ff 74       		.byte	0x74
+ 1166 0100 00       		.sleb128 0
+ 1167 0101 21       		.byte	0x21
+ 1168 0102 9F       		.byte	0x9f
+ 1169 0103 1A000000 		.4byte	.LVL10
+ 1170 0107 1E000000 		.4byte	.LVL11
+ 1171 010b 0100     		.2byte	0x1
+ 1172 010d 50       		.byte	0x50
+ 1173 010e 1E000000 		.4byte	.LVL11
+ 1174 0112 20000000 		.4byte	.LVL12
+ 1175 0116 0600     		.2byte	0x6
+ 1176 0118 70       		.byte	0x70
+ 1177 0119 00       		.sleb128 0
+ 1178 011a 74       		.byte	0x74
+ 1179 011b 00       		.sleb128 0
+ 1180 011c 21       		.byte	0x21
+ 1181 011d 9F       		.byte	0x9f
+ 1182 011e 00000000 		.4byte	0
+ 1183 0122 00000000 		.4byte	0
+ 1184              	.LLST5:
+ 1185 0126 00000000 		.4byte	.LVL14
+ 1186 012a 08000000 		.4byte	.LVL17
+ 1187 012e 0100     		.2byte	0x1
+ 1188 0130 50       		.byte	0x50
+ 1189 0131 08000000 		.4byte	.LVL17
+ 1190 0135 0E000000 		.4byte	.LVL19
+ 1191 0139 0400     		.2byte	0x4
+ 1192 013b F3       		.byte	0xf3
+ 1193 013c 01       		.uleb128 0x1
+ 1194 013d 50       		.byte	0x50
+ 1195 013e 9F       		.byte	0x9f
+ 1196 013f 0E000000 		.4byte	.LVL19
+ 1197 0143 12000000 		.4byte	.LVL20
+ 1198 0147 0100     		.2byte	0x1
+ 1199 0149 50       		.byte	0x50
+ 1200 014a 12000000 		.4byte	.LVL20
+ 1201 014e 18000000 		.4byte	.LFE65
+ 1202 0152 0400     		.2byte	0x4
+ 1203 0154 F3       		.byte	0xf3
+ 1204 0155 01       		.uleb128 0x1
+ 1205 0156 50       		.byte	0x50
+ 1206 0157 9F       		.byte	0x9f
+ 1207 0158 00000000 		.4byte	0
+ 1208 015c 00000000 		.4byte	0
+ 1209              	.LLST6:
+ 1210 0160 00000000 		.4byte	.LVL14
+ 1211 0164 0B000000 		.4byte	.LVL18-1
+ 1212 0168 0100     		.2byte	0x1
+ 1213 016a 51       		.byte	0x51
+ 1214 016b 0B000000 		.4byte	.LVL18-1
+ 1215 016f 0E000000 		.4byte	.LVL19
+ 1216 0173 0400     		.2byte	0x4
+ 1217 0175 F3       		.byte	0xf3
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccmLy2Lk.s 			page 24
+
+
+ 1218 0176 01       		.uleb128 0x1
+ 1219 0177 51       		.byte	0x51
+ 1220 0178 9F       		.byte	0x9f
+ 1221 0179 0E000000 		.4byte	.LVL19
+ 1222 017d 15000000 		.4byte	.LVL21-1
+ 1223 0181 0100     		.2byte	0x1
+ 1224 0183 51       		.byte	0x51
+ 1225 0184 15000000 		.4byte	.LVL21-1
+ 1226 0188 18000000 		.4byte	.LFE65
+ 1227 018c 0400     		.2byte	0x4
+ 1228 018e F3       		.byte	0xf3
+ 1229 018f 01       		.uleb128 0x1
+ 1230 0190 51       		.byte	0x51
+ 1231 0191 9F       		.byte	0x9f
+ 1232 0192 00000000 		.4byte	0
+ 1233 0196 00000000 		.4byte	0
+ 1234              	.LLST7:
+ 1235 019a 02000000 		.4byte	.LVL15
+ 1236 019e 04000000 		.4byte	.LVL16
+ 1237 01a2 0200     		.2byte	0x2
+ 1238 01a4 31       		.byte	0x31
+ 1239 01a5 9F       		.byte	0x9f
+ 1240 01a6 04000000 		.4byte	.LVL16
+ 1241 01aa 08000000 		.4byte	.LVL17
+ 1242 01ae 0500     		.2byte	0x5
+ 1243 01b0 70       		.byte	0x70
+ 1244 01b1 00       		.sleb128 0
+ 1245 01b2 31       		.byte	0x31
+ 1246 01b3 21       		.byte	0x21
+ 1247 01b4 9F       		.byte	0x9f
+ 1248 01b5 0E000000 		.4byte	.LVL19
+ 1249 01b9 12000000 		.4byte	.LVL20
+ 1250 01bd 0500     		.2byte	0x5
+ 1251 01bf 70       		.byte	0x70
+ 1252 01c0 00       		.sleb128 0
+ 1253 01c1 31       		.byte	0x31
+ 1254 01c2 21       		.byte	0x21
+ 1255 01c3 9F       		.byte	0x9f
+ 1256 01c4 00000000 		.4byte	0
+ 1257 01c8 00000000 		.4byte	0
+ 1258              	.LLST8:
+ 1259 01cc 00000000 		.4byte	.LVL32
+ 1260 01d0 07000000 		.4byte	.LVL33-1
+ 1261 01d4 0100     		.2byte	0x1
+ 1262 01d6 50       		.byte	0x50
+ 1263 01d7 07000000 		.4byte	.LVL33-1
+ 1264 01db 0A000000 		.4byte	.LVL34
+ 1265 01df 0400     		.2byte	0x4
+ 1266 01e1 F3       		.byte	0xf3
+ 1267 01e2 01       		.uleb128 0x1
+ 1268 01e3 50       		.byte	0x50
+ 1269 01e4 9F       		.byte	0x9f
+ 1270 01e5 0A000000 		.4byte	.LVL34
+ 1271 01e9 0C000000 		.4byte	.LVL35
+ 1272 01ed 0100     		.2byte	0x1
+ 1273 01ef 50       		.byte	0x50
+ 1274 01f0 0C000000 		.4byte	.LVL35
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccmLy2Lk.s 			page 25
+
+
+ 1275 01f4 12000000 		.4byte	.LFE71
+ 1276 01f8 0400     		.2byte	0x4
+ 1277 01fa F3       		.byte	0xf3
+ 1278 01fb 01       		.uleb128 0x1
+ 1279 01fc 50       		.byte	0x50
+ 1280 01fd 9F       		.byte	0x9f
+ 1281 01fe 00000000 		.4byte	0
+ 1282 0202 00000000 		.4byte	0
+ 1283              		.section	.debug_aranges,"",%progbits
+ 1284 0000 5C000000 		.4byte	0x5c
+ 1285 0004 0200     		.2byte	0x2
+ 1286 0006 00000000 		.4byte	.Ldebug_info0
+ 1287 000a 04       		.byte	0x4
+ 1288 000b 00       		.byte	0
+ 1289 000c 0000     		.2byte	0
+ 1290 000e 0000     		.2byte	0
+ 1291 0010 00000000 		.4byte	.LFB63
+ 1292 0014 10000000 		.4byte	.LFE63-.LFB63
+ 1293 0018 00000000 		.4byte	.LFB64
+ 1294 001c 26000000 		.4byte	.LFE64-.LFB64
+ 1295 0020 00000000 		.4byte	.LFB65
+ 1296 0024 18000000 		.4byte	.LFE65-.LFB65
+ 1297 0028 00000000 		.4byte	.LFB66
+ 1298 002c 14000000 		.4byte	.LFE66-.LFB66
+ 1299 0030 00000000 		.4byte	.LFB67
+ 1300 0034 14000000 		.4byte	.LFE67-.LFB67
+ 1301 0038 00000000 		.4byte	.LFB68
+ 1302 003c 14000000 		.4byte	.LFE68-.LFB68
+ 1303 0040 00000000 		.4byte	.LFB69
+ 1304 0044 14000000 		.4byte	.LFE69-.LFB69
+ 1305 0048 00000000 		.4byte	.LFB70
+ 1306 004c 10000000 		.4byte	.LFE70-.LFB70
+ 1307 0050 00000000 		.4byte	.LFB71
+ 1308 0054 12000000 		.4byte	.LFE71-.LFB71
+ 1309 0058 00000000 		.4byte	0
+ 1310 005c 00000000 		.4byte	0
+ 1311              		.section	.debug_ranges,"",%progbits
+ 1312              	.Ldebug_ranges0:
+ 1313 0000 00000000 		.4byte	.LFB63
+ 1314 0004 10000000 		.4byte	.LFE63
+ 1315 0008 00000000 		.4byte	.LFB64
+ 1316 000c 26000000 		.4byte	.LFE64
+ 1317 0010 00000000 		.4byte	.LFB65
+ 1318 0014 18000000 		.4byte	.LFE65
+ 1319 0018 00000000 		.4byte	.LFB66
+ 1320 001c 14000000 		.4byte	.LFE66
+ 1321 0020 00000000 		.4byte	.LFB67
+ 1322 0024 14000000 		.4byte	.LFE67
+ 1323 0028 00000000 		.4byte	.LFB68
+ 1324 002c 14000000 		.4byte	.LFE68
+ 1325 0030 00000000 		.4byte	.LFB69
+ 1326 0034 14000000 		.4byte	.LFE69
+ 1327 0038 00000000 		.4byte	.LFB70
+ 1328 003c 10000000 		.4byte	.LFE70
+ 1329 0040 00000000 		.4byte	.LFB71
+ 1330 0044 12000000 		.4byte	.LFE71
+ 1331 0048 00000000 		.4byte	0
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccmLy2Lk.s 			page 26
+
+
+ 1332 004c 00000000 		.4byte	0
+ 1333              		.section	.debug_line,"",%progbits
+ 1334              	.Ldebug_line0:
+ 1335 0000 32020000 		.section	.debug_str,"MS",%progbits,1
+ 1335      02008601 
+ 1335      00000201 
+ 1335      FB0E0D00 
+ 1335      01010101 
+ 1336              	.LASF33:
+ 1337 0000 454E5F42 		.ascii	"EN_B_PWM_WriteCompare\000"
+ 1337      5F50574D 
+ 1337      5F577269 
+ 1337      7465436F 
+ 1337      6D706172 
+ 1338              	.LASF4:
+ 1339 0016 5F5F7569 		.ascii	"__uint8_t\000"
+ 1339      6E74385F 
+ 1339      7400
+ 1340              	.LASF30:
+ 1341 0020 73746F70 		.ascii	"stop_all\000"
+ 1341      5F616C6C 
+ 1341      00
+ 1342              	.LASF22:
+ 1343 0029 73657444 		.ascii	"setDirection\000"
+ 1343      69726563 
+ 1343      74696F6E 
+ 1343      00
+ 1344              	.LASF5:
+ 1345 0036 5F5F696E 		.ascii	"__int32_t\000"
+ 1345      7433325F 
+ 1345      7400
+ 1346              	.LASF29:
+ 1347 0040 676F5269 		.ascii	"goRight\000"
+ 1347      67687400 
+ 1348              	.LASF16:
+ 1349 0048 646F7562 		.ascii	"double\000"
+ 1349      6C6500
+ 1350              	.LASF23:
+ 1351 004f 64697265 		.ascii	"direction\000"
+ 1351      6374696F 
+ 1351      6E00
+ 1352              	.LASF20:
+ 1353 0059 6D6F746F 		.ascii	"motorID\000"
+ 1353      72494400 
+ 1354              	.LASF15:
+ 1355 0061 666C6F61 		.ascii	"float\000"
+ 1355      7400
+ 1356              	.LASF38:
+ 1357 0067 2E5C6D6F 		.ascii	".\\motordriver.c\000"
+ 1357      746F7264 
+ 1357      72697665 
+ 1357      722E6300 
+ 1358              	.LASF36:
+ 1359 0077 4D6F746F 		.ascii	"Motor_B_Read\000"
+ 1359      725F425F 
+ 1359      52656164 
+ 1359      00
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccmLy2Lk.s 			page 27
+
+
+ 1360              	.LASF7:
+ 1361 0084 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1361      20756E73 
+ 1361      69676E65 
+ 1361      6420696E 
+ 1361      7400
+ 1362              	.LASF37:
+ 1363 0096 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 1363      4320342E 
+ 1363      382E3420 
+ 1363      32303134 
+ 1363      30353236 
+ 1364 00c9 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m3 -mthumb -g -O"
+ 1364      20726576 
+ 1364      6973696F 
+ 1364      6E203231 
+ 1364      31333538 
+ 1365 00fc 67202D66 		.ascii	"g -ffunction-sections\000"
+ 1365      66756E63 
+ 1365      74696F6E 
+ 1365      2D736563 
+ 1365      74696F6E 
+ 1366              	.LASF3:
+ 1367 0112 73686F72 		.ascii	"short unsigned int\000"
+ 1367      7420756E 
+ 1367      7369676E 
+ 1367      65642069 
+ 1367      6E7400
+ 1368              	.LASF31:
+ 1369 0125 73746F70 		.ascii	"stop\000"
+ 1369      00
+ 1370              	.LASF40:
+ 1371 012a 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1371      52784275 
+ 1371      66666572 
+ 1371      00
+ 1372              	.LASF1:
+ 1373 0137 756E7369 		.ascii	"unsigned char\000"
+ 1373      676E6564 
+ 1373      20636861 
+ 1373      7200
+ 1374              	.LASF21:
+ 1375 0145 73657453 		.ascii	"setSpeed\000"
+ 1375      70656564 
+ 1375      00
+ 1376              	.LASF27:
+ 1377 014e 676F4261 		.ascii	"goBackward\000"
+ 1377      636B7761 
+ 1377      726400
+ 1378              	.LASF14:
+ 1379 0159 75696E74 		.ascii	"uint16\000"
+ 1379      313600
+ 1380              	.LASF24:
+ 1381 0160 726F7461 		.ascii	"rotateMotor\000"
+ 1381      74654D6F 
+ 1381      746F7200 
+ 1382              	.LASF10:
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccmLy2Lk.s 			page 28
+
+
+ 1383 016c 756E7369 		.ascii	"unsigned int\000"
+ 1383      676E6564 
+ 1383      20696E74 
+ 1383      00
+ 1384              	.LASF25:
+ 1385 0179 74656D70 		.ascii	"temp\000"
+ 1385      00
+ 1386              	.LASF32:
+ 1387 017e 454E5F41 		.ascii	"EN_A_PWM_WriteCompare\000"
+ 1387      5F50574D 
+ 1387      5F577269 
+ 1387      7465436F 
+ 1387      6D706172 
+ 1388              	.LASF9:
+ 1389 0194 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1389      206C6F6E 
+ 1389      6720756E 
+ 1389      7369676E 
+ 1389      65642069 
+ 1390              	.LASF11:
+ 1391 01ab 75696E74 		.ascii	"uint8_t\000"
+ 1391      385F7400 
+ 1392              	.LASF26:
+ 1393 01b3 676F466F 		.ascii	"goForward\000"
+ 1393      72776172 
+ 1393      6400
+ 1394              	.LASF34:
+ 1395 01bd 4D6F746F 		.ascii	"Motor_A_Write\000"
+ 1395      725F415F 
+ 1395      57726974 
+ 1395      6500
+ 1396              	.LASF39:
+ 1397 01cb 433A5C55 		.ascii	"C:\\Users\\Jorden\\Documents\\PSoC Creator\\Test\\T"
+ 1397      73657273 
+ 1397      5C4A6F72 
+ 1397      64656E5C 
+ 1397      446F6375 
+ 1398 01f8 6573742E 		.ascii	"est.cydsn\000"
+ 1398      63796473 
+ 1398      6E00
+ 1399              	.LASF28:
+ 1400 0202 676F4C65 		.ascii	"goLeft\000"
+ 1400      667400
+ 1401              	.LASF19:
+ 1402 0209 73706565 		.ascii	"speed\000"
+ 1402      6400
+ 1403              	.LASF18:
+ 1404 020f 73697A65 		.ascii	"sizetype\000"
+ 1404      74797065 
+ 1404      00
+ 1405              	.LASF8:
+ 1406 0218 6C6F6E67 		.ascii	"long long int\000"
+ 1406      206C6F6E 
+ 1406      6720696E 
+ 1406      7400
+ 1407              	.LASF17:
+ 1408 0226 63686172 		.ascii	"char\000"
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccmLy2Lk.s 			page 29
+
+
+ 1408      00
+ 1409              	.LASF41:
+ 1410 022b 4D6F746F 		.ascii	"Motor_B_Write\000"
+ 1410      725F425F 
+ 1410      57726974 
+ 1410      6500
+ 1411              	.LASF12:
+ 1412 0239 696E7433 		.ascii	"int32_t\000"
+ 1412      325F7400 
+ 1413              	.LASF2:
+ 1414 0241 73686F72 		.ascii	"short int\000"
+ 1414      7420696E 
+ 1414      7400
+ 1415              	.LASF13:
+ 1416 024b 75696E74 		.ascii	"uint8\000"
+ 1416      3800
+ 1417              	.LASF6:
+ 1418 0251 6C6F6E67 		.ascii	"long int\000"
+ 1418      20696E74 
+ 1418      00
+ 1419              	.LASF0:
+ 1420 025a 7369676E 		.ascii	"signed char\000"
+ 1420      65642063 
+ 1420      68617200 
+ 1421              	.LASF35:
+ 1422 0266 4D6F746F 		.ascii	"Motor_A_Read\000"
+ 1422      725F415F 
+ 1422      52656164 
+ 1422      00
+ 1423              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br

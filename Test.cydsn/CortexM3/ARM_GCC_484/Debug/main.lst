@@ -1,0 +1,1046 @@
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccBT85ki.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"main.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.init,"ax",%progbits
+  19              		.align	2
+  20              		.global	init
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	init, %function
+  24              	init:
+  25              	.LFB64:
+  26              		.file 1 ".\\main.c"
+   1:.\main.c      **** /* ========================================
+   2:.\main.c      ****  *
+   3:.\main.c      ****  * Copyright YOUR COMPANY, THE YEAR
+   4:.\main.c      ****  * All Rights Reserved
+   5:.\main.c      ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:.\main.c      ****  *
+   7:.\main.c      ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:.\main.c      ****  * WHICH IS THE PROPERTY OF your company.
+   9:.\main.c      ****  *
+  10:.\main.c      ****  * ========================================
+  11:.\main.c      **** */
+  12:.\main.c      **** #include <project.h>
+  13:.\main.c      **** #include "motordriver.h"
+  14:.\main.c      **** 
+  15:.\main.c      **** void init();
+  16:.\main.c      **** int main()
+  17:.\main.c      **** {
+  18:.\main.c      ****    CyGlobalIntEnable; /* Enable global interrupts. */
+  19:.\main.c      **** init();
+  20:.\main.c      ****     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
+  21:.\main.c      ****         setSpeed(30000,MOTOR_A);
+  22:.\main.c      ****         setSpeed(30000,MOTOR_B);
+  23:.\main.c      ****     for(;;)
+  24:.\main.c      ****     {
+  25:.\main.c      ****        
+  26:.\main.c      ****         goForward();
+  27:.\main.c      ****         CyDelay(2000);
+  28:.\main.c      ****         stop_all();
+  29:.\main.c      ****         CyDelay(2000);
+  30:.\main.c      ****         goBackward();
+  31:.\main.c      ****         CyDelay(2000);
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccBT85ki.s 			page 2
+
+
+  32:.\main.c      ****         stop_all();
+  33:.\main.c      ****         CyDelay(2000);
+  34:.\main.c      ****         goLeft();
+  35:.\main.c      ****         CyDelay(2000);
+  36:.\main.c      ****         stop_all();
+  37:.\main.c      ****         CyDelay(2000);
+  38:.\main.c      ****         goRight();
+  39:.\main.c      ****         CyDelay(2000);
+  40:.\main.c      ****         stop_all();
+  41:.\main.c      ****         CyDelay(2000);
+  42:.\main.c      ****     }
+  43:.\main.c      **** }
+  44:.\main.c      **** void init()
+  45:.\main.c      **** {
+  27              		.loc 1 45 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 08B5     		push	{r3, lr}
+  32              		.cfi_def_cfa_offset 8
+  33              		.cfi_offset 3, -8
+  34              		.cfi_offset 14, -4
+  46:.\main.c      ****     EN_B_PWM_Start();
+  35              		.loc 1 46 0
+  36 0002 FFF7FEFF 		bl	EN_B_PWM_Start
+  37              	.LVL0:
+  47:.\main.c      ****     EN_A_PWM_Start();
+  38              		.loc 1 47 0
+  39 0006 FFF7FEFF 		bl	EN_A_PWM_Start
+  40              	.LVL1:
+  41 000a 08BD     		pop	{r3, pc}
+  42              		.cfi_endproc
+  43              	.LFE64:
+  44              		.size	init, .-init
+  45              		.section	.text.main,"ax",%progbits
+  46              		.align	2
+  47              		.global	main
+  48              		.thumb
+  49              		.thumb_func
+  50              		.type	main, %function
+  51              	main:
+  52              	.LFB63:
+  17:.\main.c      **** {
+  53              		.loc 1 17 0
+  54              		.cfi_startproc
+  55              		@ Volatile: function does not return.
+  56              		@ args = 0, pretend = 0, frame = 0
+  57              		@ frame_needed = 0, uses_anonymous_args = 0
+  58 0000 08B5     		push	{r3, lr}
+  59              		.cfi_def_cfa_offset 8
+  60              		.cfi_offset 3, -8
+  61              		.cfi_offset 14, -4
+  18:.\main.c      ****    CyGlobalIntEnable; /* Enable global interrupts. */
+  62              		.loc 1 18 0
+  63              	@ 18 ".\main.c" 1
+  64 0002 62B6     		CPSIE   i
+  65              	@ 0 "" 2
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccBT85ki.s 			page 3
+
+
+  19:.\main.c      **** init();
+  66              		.loc 1 19 0
+  67              		.thumb
+  68 0004 FFF7FEFF 		bl	init
+  69              	.LVL2:
+  21:.\main.c      ****         setSpeed(30000,MOTOR_A);
+  70              		.loc 1 21 0
+  71 0008 47F23050 		movw	r0, #30000
+  72 000c 0021     		movs	r1, #0
+  73 000e FFF7FEFF 		bl	setSpeed
+  74              	.LVL3:
+  22:.\main.c      ****         setSpeed(30000,MOTOR_B);
+  75              		.loc 1 22 0
+  76 0012 47F23050 		movw	r0, #30000
+  77 0016 0121     		movs	r1, #1
+  78 0018 FFF7FEFF 		bl	setSpeed
+  79              	.LVL4:
+  27:.\main.c      ****         CyDelay(2000);
+  80              		.loc 1 27 0
+  81 001c 4FF4FA64 		mov	r4, #2000
+  82              	.L3:
+  26:.\main.c      ****         goForward();
+  83              		.loc 1 26 0 discriminator 1
+  84 0020 FFF7FEFF 		bl	goForward
+  85              	.LVL5:
+  27:.\main.c      ****         CyDelay(2000);
+  86              		.loc 1 27 0 discriminator 1
+  87 0024 2046     		mov	r0, r4
+  88 0026 FFF7FEFF 		bl	CyDelay
+  89              	.LVL6:
+  28:.\main.c      ****         stop_all();
+  90              		.loc 1 28 0 discriminator 1
+  91 002a FFF7FEFF 		bl	stop_all
+  92              	.LVL7:
+  29:.\main.c      ****         CyDelay(2000);
+  93              		.loc 1 29 0 discriminator 1
+  94 002e 2046     		mov	r0, r4
+  95 0030 FFF7FEFF 		bl	CyDelay
+  96              	.LVL8:
+  30:.\main.c      ****         goBackward();
+  97              		.loc 1 30 0 discriminator 1
+  98 0034 FFF7FEFF 		bl	goBackward
+  99              	.LVL9:
+  31:.\main.c      ****         CyDelay(2000);
+ 100              		.loc 1 31 0 discriminator 1
+ 101 0038 2046     		mov	r0, r4
+ 102 003a FFF7FEFF 		bl	CyDelay
+ 103              	.LVL10:
+  32:.\main.c      ****         stop_all();
+ 104              		.loc 1 32 0 discriminator 1
+ 105 003e FFF7FEFF 		bl	stop_all
+ 106              	.LVL11:
+  33:.\main.c      ****         CyDelay(2000);
+ 107              		.loc 1 33 0 discriminator 1
+ 108 0042 2046     		mov	r0, r4
+ 109 0044 FFF7FEFF 		bl	CyDelay
+ 110              	.LVL12:
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccBT85ki.s 			page 4
+
+
+  34:.\main.c      ****         goLeft();
+ 111              		.loc 1 34 0 discriminator 1
+ 112 0048 FFF7FEFF 		bl	goLeft
+ 113              	.LVL13:
+  35:.\main.c      ****         CyDelay(2000);
+ 114              		.loc 1 35 0 discriminator 1
+ 115 004c 2046     		mov	r0, r4
+ 116 004e FFF7FEFF 		bl	CyDelay
+ 117              	.LVL14:
+  36:.\main.c      ****         stop_all();
+ 118              		.loc 1 36 0 discriminator 1
+ 119 0052 FFF7FEFF 		bl	stop_all
+ 120              	.LVL15:
+  37:.\main.c      ****         CyDelay(2000);
+ 121              		.loc 1 37 0 discriminator 1
+ 122 0056 2046     		mov	r0, r4
+ 123 0058 FFF7FEFF 		bl	CyDelay
+ 124              	.LVL16:
+  38:.\main.c      ****         goRight();
+ 125              		.loc 1 38 0 discriminator 1
+ 126 005c FFF7FEFF 		bl	goRight
+ 127              	.LVL17:
+  39:.\main.c      ****         CyDelay(2000);
+ 128              		.loc 1 39 0 discriminator 1
+ 129 0060 2046     		mov	r0, r4
+ 130 0062 FFF7FEFF 		bl	CyDelay
+ 131              	.LVL18:
+  40:.\main.c      ****         stop_all();
+ 132              		.loc 1 40 0 discriminator 1
+ 133 0066 FFF7FEFF 		bl	stop_all
+ 134              	.LVL19:
+  41:.\main.c      ****         CyDelay(2000);
+ 135              		.loc 1 41 0 discriminator 1
+ 136 006a 2046     		mov	r0, r4
+ 137 006c FFF7FEFF 		bl	CyDelay
+ 138              	.LVL20:
+ 139 0070 D6E7     		b	.L3
+ 140              		.cfi_endproc
+ 141              	.LFE63:
+ 142              		.size	main, .-main
+ 143 0072 00BF     		.text
+ 144              	.Letext0:
+ 145              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.2\\psoc creator\\import\\gnu\\arm\\4.8.
+ 146              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\3.2\\psoc creator\\import\\gnu\\arm\\4.8.
+ 147              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 148              		.file 5 "Generated_Source\\PSoC5/EN_B_PWM.h"
+ 149              		.file 6 "Generated_Source\\PSoC5/EN_A_PWM.h"
+ 150              		.file 7 ".\\motordriver.h"
+ 151              		.file 8 "Generated_Source\\PSoC5/CyLib.h"
+ 152              		.file 9 "Generated_Source\\PSoC5/core_cm3.h"
+ 153              		.section	.debug_info,"",%progbits
+ 154              	.Ldebug_info0:
+ 155 0000 AC020000 		.4byte	0x2ac
+ 156 0004 0400     		.2byte	0x4
+ 157 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 158 000a 04       		.byte	0x4
+ 159 000b 01       		.uleb128 0x1
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccBT85ki.s 			page 5
+
+
+ 160 000c 3A010000 		.4byte	.LASF27
+ 161 0010 01       		.byte	0x1
+ 162 0011 55000000 		.4byte	.LASF28
+ 163 0015 FC000000 		.4byte	.LASF29
+ 164 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 165 001d 00000000 		.4byte	0
+ 166 0021 00000000 		.4byte	.Ldebug_line0
+ 167 0025 02       		.uleb128 0x2
+ 168 0026 01       		.byte	0x1
+ 169 0027 06       		.byte	0x6
+ 170 0028 E5010000 		.4byte	.LASF0
+ 171 002c 03       		.uleb128 0x3
+ 172 002d 00000000 		.4byte	.LASF4
+ 173 0031 02       		.byte	0x2
+ 174 0032 1C       		.byte	0x1c
+ 175 0033 37000000 		.4byte	0x37
+ 176 0037 02       		.uleb128 0x2
+ 177 0038 01       		.byte	0x1
+ 178 0039 08       		.byte	0x8
+ 179 003a 47000000 		.4byte	.LASF1
+ 180 003e 02       		.uleb128 0x2
+ 181 003f 02       		.byte	0x2
+ 182 0040 05       		.byte	0x5
+ 183 0041 D2010000 		.4byte	.LASF2
+ 184 0045 02       		.uleb128 0x2
+ 185 0046 02       		.byte	0x2
+ 186 0047 07       		.byte	0x7
+ 187 0048 70000000 		.4byte	.LASF3
+ 188 004c 03       		.uleb128 0x3
+ 189 004d 13000000 		.4byte	.LASF5
+ 190 0051 02       		.byte	0x2
+ 191 0052 37       		.byte	0x37
+ 192 0053 57000000 		.4byte	0x57
+ 193 0057 02       		.uleb128 0x2
+ 194 0058 04       		.byte	0x4
+ 195 0059 05       		.byte	0x5
+ 196 005a DC010000 		.4byte	.LASF6
+ 197 005e 02       		.uleb128 0x2
+ 198 005f 04       		.byte	0x4
+ 199 0060 07       		.byte	0x7
+ 200 0061 5E000000 		.4byte	.LASF7
+ 201 0065 02       		.uleb128 0x2
+ 202 0066 08       		.byte	0x8
+ 203 0067 05       		.byte	0x5
+ 204 0068 BF010000 		.4byte	.LASF8
+ 205 006c 02       		.uleb128 0x2
+ 206 006d 08       		.byte	0x8
+ 207 006e 07       		.byte	0x7
+ 208 006f D3000000 		.4byte	.LASF9
+ 209 0073 04       		.uleb128 0x4
+ 210 0074 04       		.byte	0x4
+ 211 0075 05       		.byte	0x5
+ 212 0076 696E7400 		.ascii	"int\000"
+ 213 007a 02       		.uleb128 0x2
+ 214 007b 04       		.byte	0x4
+ 215 007c 07       		.byte	0x7
+ 216 007d C6000000 		.4byte	.LASF10
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccBT85ki.s 			page 6
+
+
+ 217 0081 03       		.uleb128 0x3
+ 218 0082 EA000000 		.4byte	.LASF11
+ 219 0086 03       		.byte	0x3
+ 220 0087 2A       		.byte	0x2a
+ 221 0088 2C000000 		.4byte	0x2c
+ 222 008c 03       		.uleb128 0x3
+ 223 008d 39000000 		.4byte	.LASF12
+ 224 0091 03       		.byte	0x3
+ 225 0092 41       		.byte	0x41
+ 226 0093 4C000000 		.4byte	0x4c
+ 227 0097 03       		.uleb128 0x3
+ 228 0098 B8000000 		.4byte	.LASF13
+ 229 009c 04       		.byte	0x4
+ 230 009d B4       		.byte	0xb4
+ 231 009e 45000000 		.4byte	0x45
+ 232 00a2 03       		.uleb128 0x3
+ 233 00a3 BF000000 		.4byte	.LASF14
+ 234 00a7 04       		.byte	0x4
+ 235 00a8 B5       		.byte	0xb5
+ 236 00a9 5E000000 		.4byte	0x5e
+ 237 00ad 02       		.uleb128 0x2
+ 238 00ae 04       		.byte	0x4
+ 239 00af 04       		.byte	0x4
+ 240 00b0 41000000 		.4byte	.LASF15
+ 241 00b4 02       		.uleb128 0x2
+ 242 00b5 08       		.byte	0x8
+ 243 00b6 04       		.byte	0x4
+ 244 00b7 F1010000 		.4byte	.LASF16
+ 245 00bb 02       		.uleb128 0x2
+ 246 00bc 01       		.byte	0x1
+ 247 00bd 08       		.byte	0x8
+ 248 00be CD010000 		.4byte	.LASF17
+ 249 00c2 02       		.uleb128 0x2
+ 250 00c3 04       		.byte	0x4
+ 251 00c4 07       		.byte	0x7
+ 252 00c5 B6010000 		.4byte	.LASF18
+ 253 00c9 05       		.uleb128 0x5
+ 254 00ca 25000000 		.4byte	.LASF30
+ 255 00ce 01       		.byte	0x1
+ 256 00cf 2C       		.byte	0x2c
+ 257 00d0 00000000 		.4byte	.LFB64
+ 258 00d4 0C000000 		.4byte	.LFE64-.LFB64
+ 259 00d8 01       		.uleb128 0x1
+ 260 00d9 9C       		.byte	0x9c
+ 261 00da F1000000 		.4byte	0xf1
+ 262 00de 06       		.uleb128 0x6
+ 263 00df 06000000 		.4byte	.LVL0
+ 264 00e3 3D020000 		.4byte	0x23d
+ 265 00e7 06       		.uleb128 0x6
+ 266 00e8 0A000000 		.4byte	.LVL1
+ 267 00ec 44020000 		.4byte	0x244
+ 268 00f0 00       		.byte	0
+ 269 00f1 07       		.uleb128 0x7
+ 270 00f2 B3000000 		.4byte	.LASF31
+ 271 00f6 01       		.byte	0x1
+ 272 00f7 10       		.byte	0x10
+ 273 00f8 73000000 		.4byte	0x73
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccBT85ki.s 			page 7
+
+
+ 274 00fc 00000000 		.4byte	.LFB63
+ 275 0100 72000000 		.4byte	.LFE63-.LFB63
+ 276 0104 01       		.uleb128 0x1
+ 277 0105 9C       		.byte	0x9c
+ 278 0106 2C020000 		.4byte	0x22c
+ 279 010a 06       		.uleb128 0x6
+ 280 010b 08000000 		.4byte	.LVL2
+ 281 010f C9000000 		.4byte	0xc9
+ 282 0113 08       		.uleb128 0x8
+ 283 0114 12000000 		.4byte	.LVL3
+ 284 0118 4B020000 		.4byte	0x24b
+ 285 011c 2D010000 		.4byte	0x12d
+ 286 0120 09       		.uleb128 0x9
+ 287 0121 01       		.uleb128 0x1
+ 288 0122 51       		.byte	0x51
+ 289 0123 01       		.uleb128 0x1
+ 290 0124 30       		.byte	0x30
+ 291 0125 09       		.uleb128 0x9
+ 292 0126 01       		.uleb128 0x1
+ 293 0127 50       		.byte	0x50
+ 294 0128 03       		.uleb128 0x3
+ 295 0129 0A       		.byte	0xa
+ 296 012a 3075     		.2byte	0x7530
+ 297 012c 00       		.byte	0
+ 298 012d 08       		.uleb128 0x8
+ 299 012e 1C000000 		.4byte	.LVL4
+ 300 0132 4B020000 		.4byte	0x24b
+ 301 0136 47010000 		.4byte	0x147
+ 302 013a 09       		.uleb128 0x9
+ 303 013b 01       		.uleb128 0x1
+ 304 013c 51       		.byte	0x51
+ 305 013d 01       		.uleb128 0x1
+ 306 013e 31       		.byte	0x31
+ 307 013f 09       		.uleb128 0x9
+ 308 0140 01       		.uleb128 0x1
+ 309 0141 50       		.byte	0x50
+ 310 0142 03       		.uleb128 0x3
+ 311 0143 0A       		.byte	0xa
+ 312 0144 3075     		.2byte	0x7530
+ 313 0146 00       		.byte	0
+ 314 0147 06       		.uleb128 0x6
+ 315 0148 24000000 		.4byte	.LVL5
+ 316 014c 61020000 		.4byte	0x261
+ 317 0150 08       		.uleb128 0x8
+ 318 0151 2A000000 		.4byte	.LVL6
+ 319 0155 6E020000 		.4byte	0x26e
+ 320 0159 64010000 		.4byte	0x164
+ 321 015d 09       		.uleb128 0x9
+ 322 015e 01       		.uleb128 0x1
+ 323 015f 50       		.byte	0x50
+ 324 0160 02       		.uleb128 0x2
+ 325 0161 74       		.byte	0x74
+ 326 0162 00       		.sleb128 0
+ 327 0163 00       		.byte	0
+ 328 0164 06       		.uleb128 0x6
+ 329 0165 2E000000 		.4byte	.LVL7
+ 330 0169 7F020000 		.4byte	0x27f
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccBT85ki.s 			page 8
+
+
+ 331 016d 08       		.uleb128 0x8
+ 332 016e 34000000 		.4byte	.LVL8
+ 333 0172 6E020000 		.4byte	0x26e
+ 334 0176 81010000 		.4byte	0x181
+ 335 017a 09       		.uleb128 0x9
+ 336 017b 01       		.uleb128 0x1
+ 337 017c 50       		.byte	0x50
+ 338 017d 02       		.uleb128 0x2
+ 339 017e 74       		.byte	0x74
+ 340 017f 00       		.sleb128 0
+ 341 0180 00       		.byte	0
+ 342 0181 06       		.uleb128 0x6
+ 343 0182 38000000 		.4byte	.LVL9
+ 344 0186 8C020000 		.4byte	0x28c
+ 345 018a 08       		.uleb128 0x8
+ 346 018b 3E000000 		.4byte	.LVL10
+ 347 018f 6E020000 		.4byte	0x26e
+ 348 0193 9E010000 		.4byte	0x19e
+ 349 0197 09       		.uleb128 0x9
+ 350 0198 01       		.uleb128 0x1
+ 351 0199 50       		.byte	0x50
+ 352 019a 02       		.uleb128 0x2
+ 353 019b 74       		.byte	0x74
+ 354 019c 00       		.sleb128 0
+ 355 019d 00       		.byte	0
+ 356 019e 06       		.uleb128 0x6
+ 357 019f 42000000 		.4byte	.LVL11
+ 358 01a3 7F020000 		.4byte	0x27f
+ 359 01a7 08       		.uleb128 0x8
+ 360 01a8 48000000 		.4byte	.LVL12
+ 361 01ac 6E020000 		.4byte	0x26e
+ 362 01b0 BB010000 		.4byte	0x1bb
+ 363 01b4 09       		.uleb128 0x9
+ 364 01b5 01       		.uleb128 0x1
+ 365 01b6 50       		.byte	0x50
+ 366 01b7 02       		.uleb128 0x2
+ 367 01b8 74       		.byte	0x74
+ 368 01b9 00       		.sleb128 0
+ 369 01ba 00       		.byte	0
+ 370 01bb 06       		.uleb128 0x6
+ 371 01bc 4C000000 		.4byte	.LVL13
+ 372 01c0 99020000 		.4byte	0x299
+ 373 01c4 08       		.uleb128 0x8
+ 374 01c5 52000000 		.4byte	.LVL14
+ 375 01c9 6E020000 		.4byte	0x26e
+ 376 01cd D8010000 		.4byte	0x1d8
+ 377 01d1 09       		.uleb128 0x9
+ 378 01d2 01       		.uleb128 0x1
+ 379 01d3 50       		.byte	0x50
+ 380 01d4 02       		.uleb128 0x2
+ 381 01d5 74       		.byte	0x74
+ 382 01d6 00       		.sleb128 0
+ 383 01d7 00       		.byte	0
+ 384 01d8 06       		.uleb128 0x6
+ 385 01d9 56000000 		.4byte	.LVL15
+ 386 01dd 7F020000 		.4byte	0x27f
+ 387 01e1 08       		.uleb128 0x8
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccBT85ki.s 			page 9
+
+
+ 388 01e2 5C000000 		.4byte	.LVL16
+ 389 01e6 6E020000 		.4byte	0x26e
+ 390 01ea F5010000 		.4byte	0x1f5
+ 391 01ee 09       		.uleb128 0x9
+ 392 01ef 01       		.uleb128 0x1
+ 393 01f0 50       		.byte	0x50
+ 394 01f1 02       		.uleb128 0x2
+ 395 01f2 74       		.byte	0x74
+ 396 01f3 00       		.sleb128 0
+ 397 01f4 00       		.byte	0
+ 398 01f5 06       		.uleb128 0x6
+ 399 01f6 60000000 		.4byte	.LVL17
+ 400 01fa A6020000 		.4byte	0x2a6
+ 401 01fe 08       		.uleb128 0x8
+ 402 01ff 66000000 		.4byte	.LVL18
+ 403 0203 6E020000 		.4byte	0x26e
+ 404 0207 12020000 		.4byte	0x212
+ 405 020b 09       		.uleb128 0x9
+ 406 020c 01       		.uleb128 0x1
+ 407 020d 50       		.byte	0x50
+ 408 020e 02       		.uleb128 0x2
+ 409 020f 74       		.byte	0x74
+ 410 0210 00       		.sleb128 0
+ 411 0211 00       		.byte	0
+ 412 0212 06       		.uleb128 0x6
+ 413 0213 6A000000 		.4byte	.LVL19
+ 414 0217 7F020000 		.4byte	0x27f
+ 415 021b 0A       		.uleb128 0xa
+ 416 021c 70000000 		.4byte	.LVL20
+ 417 0220 6E020000 		.4byte	0x26e
+ 418 0224 09       		.uleb128 0x9
+ 419 0225 01       		.uleb128 0x1
+ 420 0226 50       		.byte	0x50
+ 421 0227 02       		.uleb128 0x2
+ 422 0228 74       		.byte	0x74
+ 423 0229 00       		.sleb128 0
+ 424 022a 00       		.byte	0
+ 425 022b 00       		.byte	0
+ 426 022c 0B       		.uleb128 0xb
+ 427 022d 83000000 		.4byte	.LASF32
+ 428 0231 09       		.byte	0x9
+ 429 0232 2A06     		.2byte	0x62a
+ 430 0234 38020000 		.4byte	0x238
+ 431 0238 0C       		.uleb128 0xc
+ 432 0239 8C000000 		.4byte	0x8c
+ 433 023d 0D       		.uleb128 0xd
+ 434 023e 2A000000 		.4byte	.LASF19
+ 435 0242 05       		.byte	0x5
+ 436 0243 92       		.byte	0x92
+ 437 0244 0D       		.uleb128 0xd
+ 438 0245 90000000 		.4byte	.LASF20
+ 439 0249 06       		.byte	0x6
+ 440 024a 92       		.byte	0x92
+ 441 024b 0E       		.uleb128 0xe
+ 442 024c 9F000000 		.4byte	.LASF21
+ 443 0250 07       		.byte	0x7
+ 444 0251 1C       		.byte	0x1c
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccBT85ki.s 			page 10
+
+
+ 445 0252 61020000 		.4byte	0x261
+ 446 0256 0F       		.uleb128 0xf
+ 447 0257 97000000 		.4byte	0x97
+ 448 025b 0F       		.uleb128 0xf
+ 449 025c 81000000 		.4byte	0x81
+ 450 0260 00       		.byte	0
+ 451 0261 10       		.uleb128 0x10
+ 452 0262 F2000000 		.4byte	.LASF23
+ 453 0266 07       		.byte	0x7
+ 454 0267 20       		.byte	0x20
+ 455 0268 6E020000 		.4byte	0x26e
+ 456 026c 11       		.uleb128 0x11
+ 457 026d 00       		.byte	0
+ 458 026e 0E       		.uleb128 0xe
+ 459 026f F8010000 		.4byte	.LASF22
+ 460 0273 08       		.byte	0x8
+ 461 0274 77       		.byte	0x77
+ 462 0275 7F020000 		.4byte	0x27f
+ 463 0279 0F       		.uleb128 0xf
+ 464 027a A2000000 		.4byte	0xa2
+ 465 027e 00       		.byte	0
+ 466 027f 10       		.uleb128 0x10
+ 467 0280 0A000000 		.4byte	.LASF24
+ 468 0284 07       		.byte	0x7
+ 469 0285 24       		.byte	0x24
+ 470 0286 8C020000 		.4byte	0x28c
+ 471 028a 11       		.uleb128 0x11
+ 472 028b 00       		.byte	0
+ 473 028c 10       		.uleb128 0x10
+ 474 028d A8000000 		.4byte	.LASF25
+ 475 0291 07       		.byte	0x7
+ 476 0292 21       		.byte	0x21
+ 477 0293 99020000 		.4byte	0x299
+ 478 0297 11       		.uleb128 0x11
+ 479 0298 00       		.byte	0
+ 480 0299 10       		.uleb128 0x10
+ 481 029a 33010000 		.4byte	.LASF26
+ 482 029e 07       		.byte	0x7
+ 483 029f 22       		.byte	0x22
+ 484 02a0 A6020000 		.4byte	0x2a6
+ 485 02a4 11       		.uleb128 0x11
+ 486 02a5 00       		.byte	0
+ 487 02a6 12       		.uleb128 0x12
+ 488 02a7 1D000000 		.4byte	.LASF33
+ 489 02ab 07       		.byte	0x7
+ 490 02ac 23       		.byte	0x23
+ 491 02ad 11       		.uleb128 0x11
+ 492 02ae 00       		.byte	0
+ 493 02af 00       		.byte	0
+ 494              		.section	.debug_abbrev,"",%progbits
+ 495              	.Ldebug_abbrev0:
+ 496 0000 01       		.uleb128 0x1
+ 497 0001 11       		.uleb128 0x11
+ 498 0002 01       		.byte	0x1
+ 499 0003 25       		.uleb128 0x25
+ 500 0004 0E       		.uleb128 0xe
+ 501 0005 13       		.uleb128 0x13
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccBT85ki.s 			page 11
+
+
+ 502 0006 0B       		.uleb128 0xb
+ 503 0007 03       		.uleb128 0x3
+ 504 0008 0E       		.uleb128 0xe
+ 505 0009 1B       		.uleb128 0x1b
+ 506 000a 0E       		.uleb128 0xe
+ 507 000b 55       		.uleb128 0x55
+ 508 000c 17       		.uleb128 0x17
+ 509 000d 11       		.uleb128 0x11
+ 510 000e 01       		.uleb128 0x1
+ 511 000f 10       		.uleb128 0x10
+ 512 0010 17       		.uleb128 0x17
+ 513 0011 00       		.byte	0
+ 514 0012 00       		.byte	0
+ 515 0013 02       		.uleb128 0x2
+ 516 0014 24       		.uleb128 0x24
+ 517 0015 00       		.byte	0
+ 518 0016 0B       		.uleb128 0xb
+ 519 0017 0B       		.uleb128 0xb
+ 520 0018 3E       		.uleb128 0x3e
+ 521 0019 0B       		.uleb128 0xb
+ 522 001a 03       		.uleb128 0x3
+ 523 001b 0E       		.uleb128 0xe
+ 524 001c 00       		.byte	0
+ 525 001d 00       		.byte	0
+ 526 001e 03       		.uleb128 0x3
+ 527 001f 16       		.uleb128 0x16
+ 528 0020 00       		.byte	0
+ 529 0021 03       		.uleb128 0x3
+ 530 0022 0E       		.uleb128 0xe
+ 531 0023 3A       		.uleb128 0x3a
+ 532 0024 0B       		.uleb128 0xb
+ 533 0025 3B       		.uleb128 0x3b
+ 534 0026 0B       		.uleb128 0xb
+ 535 0027 49       		.uleb128 0x49
+ 536 0028 13       		.uleb128 0x13
+ 537 0029 00       		.byte	0
+ 538 002a 00       		.byte	0
+ 539 002b 04       		.uleb128 0x4
+ 540 002c 24       		.uleb128 0x24
+ 541 002d 00       		.byte	0
+ 542 002e 0B       		.uleb128 0xb
+ 543 002f 0B       		.uleb128 0xb
+ 544 0030 3E       		.uleb128 0x3e
+ 545 0031 0B       		.uleb128 0xb
+ 546 0032 03       		.uleb128 0x3
+ 547 0033 08       		.uleb128 0x8
+ 548 0034 00       		.byte	0
+ 549 0035 00       		.byte	0
+ 550 0036 05       		.uleb128 0x5
+ 551 0037 2E       		.uleb128 0x2e
+ 552 0038 01       		.byte	0x1
+ 553 0039 3F       		.uleb128 0x3f
+ 554 003a 19       		.uleb128 0x19
+ 555 003b 03       		.uleb128 0x3
+ 556 003c 0E       		.uleb128 0xe
+ 557 003d 3A       		.uleb128 0x3a
+ 558 003e 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccBT85ki.s 			page 12
+
+
+ 559 003f 3B       		.uleb128 0x3b
+ 560 0040 0B       		.uleb128 0xb
+ 561 0041 11       		.uleb128 0x11
+ 562 0042 01       		.uleb128 0x1
+ 563 0043 12       		.uleb128 0x12
+ 564 0044 06       		.uleb128 0x6
+ 565 0045 40       		.uleb128 0x40
+ 566 0046 18       		.uleb128 0x18
+ 567 0047 9742     		.uleb128 0x2117
+ 568 0049 19       		.uleb128 0x19
+ 569 004a 01       		.uleb128 0x1
+ 570 004b 13       		.uleb128 0x13
+ 571 004c 00       		.byte	0
+ 572 004d 00       		.byte	0
+ 573 004e 06       		.uleb128 0x6
+ 574 004f 898201   		.uleb128 0x4109
+ 575 0052 00       		.byte	0
+ 576 0053 11       		.uleb128 0x11
+ 577 0054 01       		.uleb128 0x1
+ 578 0055 31       		.uleb128 0x31
+ 579 0056 13       		.uleb128 0x13
+ 580 0057 00       		.byte	0
+ 581 0058 00       		.byte	0
+ 582 0059 07       		.uleb128 0x7
+ 583 005a 2E       		.uleb128 0x2e
+ 584 005b 01       		.byte	0x1
+ 585 005c 3F       		.uleb128 0x3f
+ 586 005d 19       		.uleb128 0x19
+ 587 005e 03       		.uleb128 0x3
+ 588 005f 0E       		.uleb128 0xe
+ 589 0060 3A       		.uleb128 0x3a
+ 590 0061 0B       		.uleb128 0xb
+ 591 0062 3B       		.uleb128 0x3b
+ 592 0063 0B       		.uleb128 0xb
+ 593 0064 49       		.uleb128 0x49
+ 594 0065 13       		.uleb128 0x13
+ 595 0066 11       		.uleb128 0x11
+ 596 0067 01       		.uleb128 0x1
+ 597 0068 12       		.uleb128 0x12
+ 598 0069 06       		.uleb128 0x6
+ 599 006a 40       		.uleb128 0x40
+ 600 006b 18       		.uleb128 0x18
+ 601 006c 9742     		.uleb128 0x2117
+ 602 006e 19       		.uleb128 0x19
+ 603 006f 01       		.uleb128 0x1
+ 604 0070 13       		.uleb128 0x13
+ 605 0071 00       		.byte	0
+ 606 0072 00       		.byte	0
+ 607 0073 08       		.uleb128 0x8
+ 608 0074 898201   		.uleb128 0x4109
+ 609 0077 01       		.byte	0x1
+ 610 0078 11       		.uleb128 0x11
+ 611 0079 01       		.uleb128 0x1
+ 612 007a 31       		.uleb128 0x31
+ 613 007b 13       		.uleb128 0x13
+ 614 007c 01       		.uleb128 0x1
+ 615 007d 13       		.uleb128 0x13
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccBT85ki.s 			page 13
+
+
+ 616 007e 00       		.byte	0
+ 617 007f 00       		.byte	0
+ 618 0080 09       		.uleb128 0x9
+ 619 0081 8A8201   		.uleb128 0x410a
+ 620 0084 00       		.byte	0
+ 621 0085 02       		.uleb128 0x2
+ 622 0086 18       		.uleb128 0x18
+ 623 0087 9142     		.uleb128 0x2111
+ 624 0089 18       		.uleb128 0x18
+ 625 008a 00       		.byte	0
+ 626 008b 00       		.byte	0
+ 627 008c 0A       		.uleb128 0xa
+ 628 008d 898201   		.uleb128 0x4109
+ 629 0090 01       		.byte	0x1
+ 630 0091 11       		.uleb128 0x11
+ 631 0092 01       		.uleb128 0x1
+ 632 0093 31       		.uleb128 0x31
+ 633 0094 13       		.uleb128 0x13
+ 634 0095 00       		.byte	0
+ 635 0096 00       		.byte	0
+ 636 0097 0B       		.uleb128 0xb
+ 637 0098 34       		.uleb128 0x34
+ 638 0099 00       		.byte	0
+ 639 009a 03       		.uleb128 0x3
+ 640 009b 0E       		.uleb128 0xe
+ 641 009c 3A       		.uleb128 0x3a
+ 642 009d 0B       		.uleb128 0xb
+ 643 009e 3B       		.uleb128 0x3b
+ 644 009f 05       		.uleb128 0x5
+ 645 00a0 49       		.uleb128 0x49
+ 646 00a1 13       		.uleb128 0x13
+ 647 00a2 3F       		.uleb128 0x3f
+ 648 00a3 19       		.uleb128 0x19
+ 649 00a4 3C       		.uleb128 0x3c
+ 650 00a5 19       		.uleb128 0x19
+ 651 00a6 00       		.byte	0
+ 652 00a7 00       		.byte	0
+ 653 00a8 0C       		.uleb128 0xc
+ 654 00a9 35       		.uleb128 0x35
+ 655 00aa 00       		.byte	0
+ 656 00ab 49       		.uleb128 0x49
+ 657 00ac 13       		.uleb128 0x13
+ 658 00ad 00       		.byte	0
+ 659 00ae 00       		.byte	0
+ 660 00af 0D       		.uleb128 0xd
+ 661 00b0 2E       		.uleb128 0x2e
+ 662 00b1 00       		.byte	0
+ 663 00b2 3F       		.uleb128 0x3f
+ 664 00b3 19       		.uleb128 0x19
+ 665 00b4 03       		.uleb128 0x3
+ 666 00b5 0E       		.uleb128 0xe
+ 667 00b6 3A       		.uleb128 0x3a
+ 668 00b7 0B       		.uleb128 0xb
+ 669 00b8 3B       		.uleb128 0x3b
+ 670 00b9 0B       		.uleb128 0xb
+ 671 00ba 27       		.uleb128 0x27
+ 672 00bb 19       		.uleb128 0x19
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccBT85ki.s 			page 14
+
+
+ 673 00bc 3C       		.uleb128 0x3c
+ 674 00bd 19       		.uleb128 0x19
+ 675 00be 00       		.byte	0
+ 676 00bf 00       		.byte	0
+ 677 00c0 0E       		.uleb128 0xe
+ 678 00c1 2E       		.uleb128 0x2e
+ 679 00c2 01       		.byte	0x1
+ 680 00c3 3F       		.uleb128 0x3f
+ 681 00c4 19       		.uleb128 0x19
+ 682 00c5 03       		.uleb128 0x3
+ 683 00c6 0E       		.uleb128 0xe
+ 684 00c7 3A       		.uleb128 0x3a
+ 685 00c8 0B       		.uleb128 0xb
+ 686 00c9 3B       		.uleb128 0x3b
+ 687 00ca 0B       		.uleb128 0xb
+ 688 00cb 27       		.uleb128 0x27
+ 689 00cc 19       		.uleb128 0x19
+ 690 00cd 3C       		.uleb128 0x3c
+ 691 00ce 19       		.uleb128 0x19
+ 692 00cf 01       		.uleb128 0x1
+ 693 00d0 13       		.uleb128 0x13
+ 694 00d1 00       		.byte	0
+ 695 00d2 00       		.byte	0
+ 696 00d3 0F       		.uleb128 0xf
+ 697 00d4 05       		.uleb128 0x5
+ 698 00d5 00       		.byte	0
+ 699 00d6 49       		.uleb128 0x49
+ 700 00d7 13       		.uleb128 0x13
+ 701 00d8 00       		.byte	0
+ 702 00d9 00       		.byte	0
+ 703 00da 10       		.uleb128 0x10
+ 704 00db 2E       		.uleb128 0x2e
+ 705 00dc 01       		.byte	0x1
+ 706 00dd 3F       		.uleb128 0x3f
+ 707 00de 19       		.uleb128 0x19
+ 708 00df 03       		.uleb128 0x3
+ 709 00e0 0E       		.uleb128 0xe
+ 710 00e1 3A       		.uleb128 0x3a
+ 711 00e2 0B       		.uleb128 0xb
+ 712 00e3 3B       		.uleb128 0x3b
+ 713 00e4 0B       		.uleb128 0xb
+ 714 00e5 3C       		.uleb128 0x3c
+ 715 00e6 19       		.uleb128 0x19
+ 716 00e7 01       		.uleb128 0x1
+ 717 00e8 13       		.uleb128 0x13
+ 718 00e9 00       		.byte	0
+ 719 00ea 00       		.byte	0
+ 720 00eb 11       		.uleb128 0x11
+ 721 00ec 18       		.uleb128 0x18
+ 722 00ed 00       		.byte	0
+ 723 00ee 00       		.byte	0
+ 724 00ef 00       		.byte	0
+ 725 00f0 12       		.uleb128 0x12
+ 726 00f1 2E       		.uleb128 0x2e
+ 727 00f2 01       		.byte	0x1
+ 728 00f3 3F       		.uleb128 0x3f
+ 729 00f4 19       		.uleb128 0x19
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccBT85ki.s 			page 15
+
+
+ 730 00f5 03       		.uleb128 0x3
+ 731 00f6 0E       		.uleb128 0xe
+ 732 00f7 3A       		.uleb128 0x3a
+ 733 00f8 0B       		.uleb128 0xb
+ 734 00f9 3B       		.uleb128 0x3b
+ 735 00fa 0B       		.uleb128 0xb
+ 736 00fb 3C       		.uleb128 0x3c
+ 737 00fc 19       		.uleb128 0x19
+ 738 00fd 00       		.byte	0
+ 739 00fe 00       		.byte	0
+ 740 00ff 00       		.byte	0
+ 741              		.section	.debug_aranges,"",%progbits
+ 742 0000 24000000 		.4byte	0x24
+ 743 0004 0200     		.2byte	0x2
+ 744 0006 00000000 		.4byte	.Ldebug_info0
+ 745 000a 04       		.byte	0x4
+ 746 000b 00       		.byte	0
+ 747 000c 0000     		.2byte	0
+ 748 000e 0000     		.2byte	0
+ 749 0010 00000000 		.4byte	.LFB64
+ 750 0014 0C000000 		.4byte	.LFE64-.LFB64
+ 751 0018 00000000 		.4byte	.LFB63
+ 752 001c 72000000 		.4byte	.LFE63-.LFB63
+ 753 0020 00000000 		.4byte	0
+ 754 0024 00000000 		.4byte	0
+ 755              		.section	.debug_ranges,"",%progbits
+ 756              	.Ldebug_ranges0:
+ 757 0000 00000000 		.4byte	.LFB64
+ 758 0004 0C000000 		.4byte	.LFE64
+ 759 0008 00000000 		.4byte	.LFB63
+ 760 000c 72000000 		.4byte	.LFE63
+ 761 0010 00000000 		.4byte	0
+ 762 0014 00000000 		.4byte	0
+ 763              		.section	.debug_line,"",%progbits
+ 764              	.Ldebug_line0:
+ 765 0000 FE010000 		.section	.debug_str,"MS",%progbits,1
+ 765      02008301 
+ 765      00000201 
+ 765      FB0E0D00 
+ 765      01010101 
+ 766              	.LASF4:
+ 767 0000 5F5F7569 		.ascii	"__uint8_t\000"
+ 767      6E74385F 
+ 767      7400
+ 768              	.LASF24:
+ 769 000a 73746F70 		.ascii	"stop_all\000"
+ 769      5F616C6C 
+ 769      00
+ 770              	.LASF5:
+ 771 0013 5F5F696E 		.ascii	"__int32_t\000"
+ 771      7433325F 
+ 771      7400
+ 772              	.LASF33:
+ 773 001d 676F5269 		.ascii	"goRight\000"
+ 773      67687400 
+ 774              	.LASF30:
+ 775 0025 696E6974 		.ascii	"init\000"
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccBT85ki.s 			page 16
+
+
+ 775      00
+ 776              	.LASF19:
+ 777 002a 454E5F42 		.ascii	"EN_B_PWM_Start\000"
+ 777      5F50574D 
+ 777      5F537461 
+ 777      727400
+ 778              	.LASF12:
+ 779 0039 696E7433 		.ascii	"int32_t\000"
+ 779      325F7400 
+ 780              	.LASF15:
+ 781 0041 666C6F61 		.ascii	"float\000"
+ 781      7400
+ 782              	.LASF1:
+ 783 0047 756E7369 		.ascii	"unsigned char\000"
+ 783      676E6564 
+ 783      20636861 
+ 783      7200
+ 784              	.LASF28:
+ 785 0055 2E5C6D61 		.ascii	".\\main.c\000"
+ 785      696E2E63 
+ 785      00
+ 786              	.LASF7:
+ 787 005e 6C6F6E67 		.ascii	"long unsigned int\000"
+ 787      20756E73 
+ 787      69676E65 
+ 787      6420696E 
+ 787      7400
+ 788              	.LASF3:
+ 789 0070 73686F72 		.ascii	"short unsigned int\000"
+ 789      7420756E 
+ 789      7369676E 
+ 789      65642069 
+ 789      6E7400
+ 790              	.LASF32:
+ 791 0083 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 791      52784275 
+ 791      66666572 
+ 791      00
+ 792              	.LASF20:
+ 793 0090 454E5F41 		.ascii	"EN_A_PWM_Start\000"
+ 793      5F50574D 
+ 793      5F537461 
+ 793      727400
+ 794              	.LASF21:
+ 795 009f 73657453 		.ascii	"setSpeed\000"
+ 795      70656564 
+ 795      00
+ 796              	.LASF25:
+ 797 00a8 676F4261 		.ascii	"goBackward\000"
+ 797      636B7761 
+ 797      726400
+ 798              	.LASF31:
+ 799 00b3 6D61696E 		.ascii	"main\000"
+ 799      00
+ 800              	.LASF13:
+ 801 00b8 75696E74 		.ascii	"uint16\000"
+ 801      313600
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccBT85ki.s 			page 17
+
+
+ 802              	.LASF14:
+ 803 00bf 75696E74 		.ascii	"uint32\000"
+ 803      333200
+ 804              	.LASF10:
+ 805 00c6 756E7369 		.ascii	"unsigned int\000"
+ 805      676E6564 
+ 805      20696E74 
+ 805      00
+ 806              	.LASF9:
+ 807 00d3 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 807      206C6F6E 
+ 807      6720756E 
+ 807      7369676E 
+ 807      65642069 
+ 808              	.LASF11:
+ 809 00ea 75696E74 		.ascii	"uint8_t\000"
+ 809      385F7400 
+ 810              	.LASF23:
+ 811 00f2 676F466F 		.ascii	"goForward\000"
+ 811      72776172 
+ 811      6400
+ 812              	.LASF29:
+ 813 00fc 433A5C55 		.ascii	"C:\\Users\\Jorden\\Documents\\PSoC Creator\\Test\\T"
+ 813      73657273 
+ 813      5C4A6F72 
+ 813      64656E5C 
+ 813      446F6375 
+ 814 0129 6573742E 		.ascii	"est.cydsn\000"
+ 814      63796473 
+ 814      6E00
+ 815              	.LASF26:
+ 816 0133 676F4C65 		.ascii	"goLeft\000"
+ 816      667400
+ 817              	.LASF27:
+ 818 013a 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 818      4320342E 
+ 818      382E3420 
+ 818      32303134 
+ 818      30353236 
+ 819 016d 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m3 -mthumb -g -O"
+ 819      20726576 
+ 819      6973696F 
+ 819      6E203231 
+ 819      31333538 
+ 820 01a0 67202D66 		.ascii	"g -ffunction-sections\000"
+ 820      66756E63 
+ 820      74696F6E 
+ 820      2D736563 
+ 820      74696F6E 
+ 821              	.LASF18:
+ 822 01b6 73697A65 		.ascii	"sizetype\000"
+ 822      74797065 
+ 822      00
+ 823              	.LASF8:
+ 824 01bf 6C6F6E67 		.ascii	"long long int\000"
+ 824      206C6F6E 
+ 824      6720696E 
+ARM GAS  C:\Users\Jorden\AppData\Local\Temp\ccBT85ki.s 			page 18
+
+
+ 824      7400
+ 825              	.LASF17:
+ 826 01cd 63686172 		.ascii	"char\000"
+ 826      00
+ 827              	.LASF2:
+ 828 01d2 73686F72 		.ascii	"short int\000"
+ 828      7420696E 
+ 828      7400
+ 829              	.LASF6:
+ 830 01dc 6C6F6E67 		.ascii	"long int\000"
+ 830      20696E74 
+ 830      00
+ 831              	.LASF0:
+ 832 01e5 7369676E 		.ascii	"signed char\000"
+ 832      65642063 
+ 832      68617200 
+ 833              	.LASF16:
+ 834 01f1 646F7562 		.ascii	"double\000"
+ 834      6C6500
+ 835              	.LASF22:
+ 836 01f8 43794465 		.ascii	"CyDelay\000"
+ 836      6C617900 
+ 837              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br
